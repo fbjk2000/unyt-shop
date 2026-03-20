@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="64" viewBox="0 0 640 64" fill="none">
+  <title>UNYTs divider motif</title>
+  <path d="M0 32H248" stroke="url(#divider-left)" stroke-width="2" />
+  <path d="M392 32H640" stroke="url(#divider-right)" stroke-width="2" />
+  <path d="M276 18V30C276 42.15 285.85 52 298 52H342C354.15 52 364 42.15 364 30V18" stroke="#4F7CFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M356 10H374C379.523 10 384 14.4772 384 20V38" stroke="#F34E98" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.85" />
+  <defs>
+    <linearGradient id="divider-left" x1="0" y1="32" x2="248" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F7CFF" stop-opacity="0" />
+      <stop offset="1" stop-color="#4F7CFF" stop-opacity="0.75" />
+    </linearGradient>
+    <linearGradient id="divider-right" x1="392" y1="32" x2="640" y2="32" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F7CFF" stop-opacity="0.75" />
+      <stop offset="1" stop-color="#4F7CFF" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+</svg>
+

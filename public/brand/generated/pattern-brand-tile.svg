@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none">
+  <title>UNYTs pattern tile</title>
+  <g opacity="0.35">
+    <path d="M84 28C56.3858 28 34 50.3858 34 78V192H58V86C58 66.1177 74.1177 50 94 50C113.882 50 130 66.1177 130 86V192H154V78C154 50.3858 131.614 28 104 28H84Z" stroke="#4F7CFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M164 42H184C188.418 42 192 45.5817 192 50V70" stroke="#F34E98" stroke-width="5" stroke-linecap="round" opacity="0.8" />
+  </g>
+  <g opacity="0.18" transform="translate(86 104) scale(0.74)">
+    <path d="M84 28C56.3858 28 34 50.3858 34 78V192H58V86C58 66.1177 74.1177 50 94 50C113.882 50 130 66.1177 130 86V192H154V78C154 50.3858 131.614 28 104 28H84Z" stroke="#8FB5FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M164 42H184C188.418 42 192 45.5817 192 50V70" stroke="#F34E98" stroke-width="5" stroke-linecap="round" opacity="0.65" />
+  </g>
+</svg>
+

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520" fill="none">
+  <title>UNYTs solid motif</title>
+  <defs>
+    <linearGradient id="motif-solid-fill" x1="96" y1="92" x2="396" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#70C5FF" />
+      <stop offset="0.4" stop-color="#4F7CFF" />
+      <stop offset="1" stop-color="#1C3CA5" />
+    </linearGradient>
+  </defs>
+  <path d="M228 56C142.945 56 88 110.945 88 196V392H152V206C152 147.01 185.01 112 244 112C302.99 112 336 147.01 336 206V392H400V196C400 110.945 345.055 56 260 56H228Z" fill="url(#motif-solid-fill)" />
+  <circle cx="138" cy="336" r="58" fill="#9EE3FF" opacity="0.28" />
+  <circle cx="188" cy="154" r="46" fill="#7AA2FF" opacity="0.22" />
+  <circle cx="258" cy="282" r="62" fill="#2754DF" opacity="0.24" />
+  <circle cx="344" cy="228" r="62" fill="#F34E98" opacity="0.16" />
+</svg>
+

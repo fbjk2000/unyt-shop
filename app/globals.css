@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b1020;
+  --surface: #111827;
+  --surface-strong: #141d31;
+  --surface-soft: rgba(152, 162, 179, 0.12);
+  --foreground: #f7f4ee;
+  --muted: #98a2b3;
+  --border: rgba(247, 244, 238, 0.12);
+  --border-strong: rgba(247, 244, 238, 0.22);
+  --accent: #4f7cff;
+  --accent-deep: #2242a4;
+  --accent-soft: rgba(79, 124, 255, 0.18);
+  --brand-cyan: #8cd7ff;
+  --brand-pink: #f34e98;
+  --brand-amber: #ffb84d;
+  --success: #12b76a;
+  --shadow: 0 30px 80px rgba(4, 10, 24, 0.45);
+  --radius-card: 28px;
+  --radius-pill: 999px;
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-newsreader);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(79, 124, 255, 0.2), transparent 28%),
+    radial-gradient(circle at 85% 18%, rgba(96, 170, 255, 0.12), transparent 20%),
+    linear-gradient(180deg, #09101f 0%, #0d1529 26%, #0a1020 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease,
+    opacity 150ms ease,
+    transform 150ms ease;
+}
+
+::selection {
+  background: rgba(79, 124, 255, 0.35);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid rgba(79, 124, 255, 0.92);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 60;
+  border-radius: 999px;
+  background: white;
+  color: #0b1020;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@utility shell {
+  @apply mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8;
+}
+
+@utility card {
+  background:
+    linear-gradient(180deg, rgba(22, 33, 56, 0.98), rgba(11, 18, 35, 0.98)),
+    linear-gradient(135deg, rgba(79, 124, 255, 0.08), transparent 48%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(79, 124, 255, 0.08),
+    var(--shadow);
+}
+
+@utility subtle-card {
+  background:
+    linear-gradient(180deg, rgba(20, 29, 49, 0.84), rgba(10, 16, 30, 0.84)),
+    linear-gradient(135deg, rgba(79, 124, 255, 0.08), transparent 55%);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius-card) - 8px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+}
+
+@utility text-muted {
+  color: var(--muted);
+}
+
+.brand-outline-divider {
+  height: 20px;
+  width: 150px;
+  background: center/contain no-repeat url("/brand/generated/divider-brand.svg");
+  opacity: 0.9;
+}
+
+.brand-pattern-overlay {
+  background-image: url("/brand/generated/pattern-brand-tile.svg");
+  background-size: 180px 180px;
+  background-repeat: repeat;
+}

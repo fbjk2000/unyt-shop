@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520" fill="none">
+  <title>UNYTs outline motif</title>
+  <path d="M260 56C345.055 56 400 110.945 400 196V392H336V206C336 147.01 302.99 112 244 112C185.01 112 152 147.01 152 206V392H88V196C88 110.945 142.945 56 228 56H260Z" stroke="#4F7CFF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M380 96H432C443.046 96 452 104.954 452 116V168" stroke="#F34E98" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" opacity="0.88" />
+  <path d="M60 456H460" stroke="url(#line)" stroke-width="2" opacity="0.45" />
+  <defs>
+    <linearGradient id="line" x1="60" y1="456" x2="460" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F7CFF" stop-opacity="0" />
+      <stop offset="0.48" stop-color="#4F7CFF" />
+      <stop offset="1" stop-color="#4F7CFF" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+</svg>
+

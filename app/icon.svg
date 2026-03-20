@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <title>UNYTs app icon</title>
+  <defs>
+    <linearGradient id="app-icon-bg" x1="96" y1="72" x2="432" y2="456" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#111C36" />
+      <stop offset="1" stop-color="#060B16" />
+    </linearGradient>
+    <linearGradient id="app-icon-line" x1="118" y1="90" x2="388" y2="404" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8AD2FF" />
+      <stop offset="0.5" stop-color="#4F7CFF" />
+      <stop offset="1" stop-color="#1B338C" />
+    </linearGradient>
+  </defs>
+  <rect x="32" y="32" width="448" height="448" rx="104" fill="url(#app-icon-bg)" />
+  <path d="M176 92C119.667 92 80 131.667 80 188V398H128V196C128 156.235 156.235 128 196 128C235.765 128 264 156.235 264 196V398H312V188C312 131.667 272.333 92 216 92H176Z" stroke="url(#app-icon-line)" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M292 92H356C369.255 92 380 102.745 380 116V180" stroke="#F34E98" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.92" />
+</svg>

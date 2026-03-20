@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <title>UNYTs logo mark</title>
+  <defs>
+    <linearGradient id="logo-mark-blue" x1="82" y1="82" x2="384" y2="388" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#72C7FF" />
+      <stop offset="0.34" stop-color="#4F7CFF" />
+      <stop offset="0.68" stop-color="#2B5AE8" />
+      <stop offset="1" stop-color="#1434A4" />
+    </linearGradient>
+    <linearGradient id="logo-mark-highlight" x1="0" y1="80" x2="0" y2="404" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.18" />
+      <stop offset="0.45" stop-color="#FFFFFF" stop-opacity="0.05" />
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+    <clipPath id="logo-mark-clip">
+      <path d="M722 -24C1101 -24 1349 195 1349 524V1490H998V553C998 395 888 282 722 282C557 282 445 396 445 553V1490H94V524C94 195 341 -24 722 -24Z" transform="translate(91.5,398.93) scale(0.211361,-0.211361)" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#logo-mark-clip)">
+    <rect x="111.37" y="84" width="265.26" height="320" fill="url(#logo-mark-blue)" />
+    <circle cx="132" cy="334" r="62" fill="#9DE7FF" opacity="0.24" />
+    <circle cx="191" cy="146" r="52" fill="#86B1FF" opacity="0.22" />
+    <circle cx="258" cy="278" r="66" fill="#3466F0" opacity="0.28" />
+    <circle cx="334" cy="204" r="68" fill="#A8BDFF" opacity="0.18" />
+    <rect x="111.37" y="84" width="265.26" height="320" fill="url(#logo-mark-highlight)" />
+  </g>
+</svg>
+
