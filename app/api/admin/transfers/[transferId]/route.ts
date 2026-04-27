@@ -18,12 +18,18 @@ export async function PATCH(
       status: TransferRequestStatus;
       statusNote: string;
       adminNotes: string;
+      executionNetwork: string;
+      tokenContractAddress: string;
+      transactionHash: string;
     }>;
 
     const transfer = await updateTransferRequestForAdmin(sessionToken, params.transferId, {
       status: body.status,
       statusNote: body.statusNote,
       adminNotes: body.adminNotes,
+      executionNetwork: body.executionNetwork,
+      tokenContractAddress: body.tokenContractAddress,
+      transactionHash: body.transactionHash,
     });
 
     return NextResponse.json({

@@ -28,7 +28,7 @@ type AdminAuditLogEntry = {
   occurredAt: string;
   adminEmail: string;
   adminRole: AdminRole;
-  action: "login" | "logout" | "wallet_update" | "transfer_intake" | "transfer_update";
+  action: "login" | "logout" | "wallet_update" | "transfer_intake" | "transfer_update" | "transfer_import";
   targetEmail: string | null;
   reason: string;
   details: string;
@@ -112,6 +112,9 @@ export function AdminWalletsPanel() {
     }
     if (action === "transfer_update") {
       return "Transfer update";
+    }
+    if (action === "transfer_import") {
+      return "Transfer import";
     }
     return t("audit.actions.walletUpdate");
   }

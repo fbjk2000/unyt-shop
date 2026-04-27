@@ -9,6 +9,7 @@ import {
   type AdminAuditLogEntry,
   type AdminRole,
   type TransferRequestRecord,
+  type TransferSourceSupporterRecord,
   type TransferRequestStatus,
 } from "@/lib/server/supporter-store";
 
@@ -46,6 +47,18 @@ const TRANSFER_STATUS_LABELS: Record<TransferRequestStatus, string> = {
   rejected: "Anfrage wurde abgelehnt oder geschlossen. Bitte wenden Sie sich an den Support.",
 };
 
+type TransferSupporterImportInput = {
+  supporterEmail: string;
+  displayName?: string;
+  sourceSystem?: string;
+  sourceReference?: string;
+  allocationAmount?: number | string | null;
+  allocationUnit?: string;
+  transferEligibility?: "eligible" | "hold" | "blocked";
+  currentWalletAddress?: string | null;
+  notes?: string;
+};
+
 function normalizeWalletAddress(value: string) {
   return value.trim().toLowerCase();
 }
@@ -81,6 +94,51 @@ function looksLikeSecretMaterial(value: string) {
 
 function createPublicReference() {
   return `UNYT-TX-${createEntryId("ref").replace(/^ref_/, "").slice(0, 8).toUpperCase()}`;
+}
+
+function parseOptionalAmount(value: number | string | null | undefined) {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const parsed = Number(value.replace(",", ".").trim());
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+
+  return null;
+}
+
+function normalizeImportEligibility(value: unknown): "eligible" | "hold" | "blocked" {
+  if (value === "hold" || value === "blocked") {
+    return value;
+  }
+
+  return "eligible";
+}
+
+function deriveMatchFields(input: {
+  fallbackSupporterId?: string | null;
+  sourceRecord?: TransferSourceSupporterRecord | null;
+}) {
+  return {
+    supporterRecordFound: Boolean(input.fallbackSupporterId || input.sourceRecord),
+    matchedSupporterId: input.sourceRecord?.id || input.fallbackSupporterId || null,
+    sourceSupporterRecordId: input.sourceRecord?.id || null,
+    sourceReference: input.sourceRecord?.sourceReference || null,
+    allocationAmount: input.sourceRecord?.allocationAmount ?? null,
+    allocationUnit: input.sourceRecord?.allocationUnit || null,
+    transferEligibility: input.sourceRecord?.transferEligibility || "unknown",
+  } satisfies Pick<
+    TransferRequestRecord,
+    | "supporterRecordFound"
+    | "matchedSupporterId"
+    | "sourceSupporterRecordId"
+    | "sourceReference"
+    | "allocationAmount"
+    | "allocationUnit"
+    | "transferEligibility"
+  >;
 }
 
 function createWalletProofMessage(input: {
@@ -192,6 +250,11 @@ export async function createTransferRequest(input: {
   const record = await mutateSupporterDatabase((database) => {
     const now = new Date().toISOString();
     const existingSupporter = database.supportersByEmail[supporterEmail];
+    const sourceRecord = database.transferSourceSupportersByEmail[supporterEmail];
+    const matchFields = deriveMatchFields({
+      fallbackSupporterId: existingSupporter?.account.supporterId,
+      sourceRecord,
+    });
     const duplicate = Object.values(database.transferRequestsById).find(
       (request) => request.supporterEmail === supporterEmail && request.walletAddress === walletAddress,
     );
@@ -205,17 +268,16 @@ export async function createTransferRequest(input: {
         status:
           duplicate.status === "rejected" || duplicate.status === "completed"
             ? duplicate.status
-            : existingSupporter
+            : matchFields.supporterRecordFound
               ? "manual_review"
               : "needs_support",
         statusNote:
           duplicate.status === "rejected" || duplicate.status === "completed"
             ? duplicate.statusNote
-            : existingSupporter
+            : matchFields.supporterRecordFound
               ? TRANSFER_STATUS_LABELS.manual_review
               : TRANSFER_STATUS_LABELS.needs_support,
-        supporterRecordFound: Boolean(existingSupporter),
-        matchedSupporterId: existingSupporter?.account.supporterId || duplicate.matchedSupporterId,
+        ...matchFields,
         walletSignatureVerified: duplicate.walletSignatureVerified,
         walletVerifiedAt: duplicate.walletVerifiedAt,
       };
@@ -233,15 +295,19 @@ export async function createTransferRequest(input: {
       displayName,
       walletAddress,
       supportNotes,
-      status: existingSupporter ? "manual_review" : "needs_support",
-      statusNote: existingSupporter ? TRANSFER_STATUS_LABELS.manual_review : TRANSFER_STATUS_LABELS.needs_support,
-      supporterRecordFound: Boolean(existingSupporter),
-      matchedSupporterId: existingSupporter?.account.supporterId || null,
+      status: matchFields.supporterRecordFound ? "manual_review" : "needs_support",
+      statusNote: matchFields.supporterRecordFound ? TRANSFER_STATUS_LABELS.manual_review : TRANSFER_STATUS_LABELS.needs_support,
+      ...matchFields,
       walletSignatureVerified: false,
       walletVerifiedAt: null,
       reviewedBy: null,
       reviewedAt: null,
       adminNotes: "",
+      preparedAt: null,
+      completedAt: null,
+      executionNetwork: null,
+      tokenContractAddress: null,
+      transactionHash: null,
     };
 
     database.transferRequestsById[id] = nextRecord;
@@ -345,6 +411,11 @@ export async function verifyTransferWalletSignature(input: {
     database.transferWalletChallengesById[challenge.id] = challenge;
 
     const existingSupporter = database.supportersByEmail[challenge.supporterEmail];
+    const sourceRecord = database.transferSourceSupportersByEmail[challenge.supporterEmail];
+    const matchFields = deriveMatchFields({
+      fallbackSupporterId: existingSupporter?.account.supporterId,
+      sourceRecord,
+    });
     const existingRequest = Object.values(database.transferRequestsById).find(
       (request) =>
         request.supporterEmail === challenge.supporterEmail &&
@@ -365,8 +436,7 @@ export async function verifyTransferWalletSignature(input: {
           existingRequest.status === "completed" || existingRequest.status === "rejected"
             ? existingRequest.statusNote
             : "Wallet-Adresse wurde per Signatur bestätigt. Manuelle Zuordnung und Transferfreigabe stehen noch aus.",
-        supporterRecordFound: Boolean(existingSupporter),
-        matchedSupporterId: existingSupporter?.account.supporterId || existingRequest.matchedSupporterId,
+        ...matchFields,
       };
     } else {
       const id = createEntryId("transfer");
@@ -382,13 +452,17 @@ export async function verifyTransferWalletSignature(input: {
         status: "manual_review",
         statusNote:
           "Wallet-Adresse wurde per Signatur bestätigt. Manuelle Zuordnung und Transferfreigabe stehen noch aus.",
-        supporterRecordFound: Boolean(existingSupporter),
-        matchedSupporterId: existingSupporter?.account.supporterId || null,
+        ...matchFields,
         walletSignatureVerified: true,
         walletVerifiedAt: now,
         reviewedBy: null,
         reviewedAt: null,
         adminNotes: "",
+        preparedAt: null,
+        completedAt: null,
+        executionNetwork: null,
+        tokenContractAddress: null,
+        transactionHash: null,
       };
     }
 
@@ -453,6 +527,9 @@ export async function updateTransferRequestForAdmin(
     status?: TransferRequestStatus;
     statusNote?: string;
     adminNotes?: string;
+    executionNetwork?: string;
+    tokenContractAddress?: string;
+    transactionHash?: string;
   },
 ) {
   const { adminEmail, adminRole } = await requireAdminSession(sessionToken);
@@ -470,11 +547,21 @@ export async function updateTransferRequestForAdmin(
     }
 
     const now = new Date().toISOString();
+    const transactionHash = sanitizeFreeText(input.transactionHash || existing.transactionHash || "", 160) || null;
+    if (nextStatus === "completed" && !transactionHash) {
+      throw new TransferServiceError(400, "Transaction hash is required before marking a transfer completed.");
+    }
+
     const nextRecord: TransferRequestRecord = {
       ...existing,
       status: nextStatus || existing.status,
       statusNote: sanitizeFreeText(input.statusNote || "", 600) || (nextStatus ? TRANSFER_STATUS_LABELS[nextStatus] : existing.statusNote),
       adminNotes: sanitizeFreeText(input.adminNotes || "", 1400) || existing.adminNotes,
+      executionNetwork: sanitizeFreeText(input.executionNetwork || "", 80) || existing.executionNetwork,
+      tokenContractAddress: sanitizeFreeText(input.tokenContractAddress || "", 120) || existing.tokenContractAddress,
+      transactionHash,
+      preparedAt: nextStatus === "ready_for_confirmation" && !existing.preparedAt ? now : existing.preparedAt,
+      completedAt: nextStatus === "completed" && !existing.completedAt ? now : existing.completedAt,
       reviewedBy: adminEmail,
       reviewedAt: now,
       updatedAt: now,
@@ -494,4 +581,102 @@ export async function updateTransferRequestForAdmin(
   });
 
   return updated;
+}
+
+export async function importTransferSupportersForAdmin(
+  sessionToken: string | undefined,
+  records: TransferSupporterImportInput[],
+) {
+  const { adminEmail, adminRole } = await requireAdminSession(sessionToken);
+  requireEditor(adminRole);
+
+  if (!Array.isArray(records) || records.length === 0) {
+    throw new TransferServiceError(400, "No supporter records supplied.");
+  }
+
+  if (records.length > 5000) {
+    throw new TransferServiceError(400, "Please import 5000 supporter records or fewer per request.");
+  }
+
+  const summary = await mutateSupporterDatabase((database) => {
+    const now = new Date().toISOString();
+    let imported = 0;
+    let updated = 0;
+    let skipped = 0;
+    const matchedTransferIds = new Set<string>();
+
+    for (const rawRecord of records) {
+      const supporterEmail = normalizeSupporterEmail(rawRecord.supporterEmail || "");
+      if (!isValidEmail(supporterEmail)) {
+        skipped += 1;
+        continue;
+      }
+
+      const existing = database.transferSourceSupportersByEmail[supporterEmail];
+      const sourceRecord: TransferSourceSupporterRecord = {
+        id: existing?.id || createEntryId("source"),
+        importedAt: existing?.importedAt || now,
+        updatedAt: now,
+        supporterEmail,
+        displayName: sanitizeFreeText(rawRecord.displayName || existing?.displayName || "", 160),
+        sourceSystem: sanitizeFreeText(rawRecord.sourceSystem || existing?.sourceSystem || "supporter_export", 80),
+        sourceReference: sanitizeFreeText(rawRecord.sourceReference || existing?.sourceReference || "", 160),
+        allocationAmount: parseOptionalAmount(rawRecord.allocationAmount) ?? existing?.allocationAmount ?? null,
+        allocationUnit: sanitizeFreeText(rawRecord.allocationUnit || existing?.allocationUnit || "UNYT", 24),
+        transferEligibility: normalizeImportEligibility(rawRecord.transferEligibility || existing?.transferEligibility),
+        currentWalletAddress: rawRecord.currentWalletAddress
+          ? normalizeWalletAddress(rawRecord.currentWalletAddress)
+          : existing?.currentWalletAddress || null,
+        notes: sanitizeFreeText(rawRecord.notes || existing?.notes || "", 1000),
+      };
+
+      database.transferSourceSupportersByEmail[supporterEmail] = sourceRecord;
+      if (existing) {
+        updated += 1;
+      } else {
+        imported += 1;
+      }
+
+      for (const transfer of Object.values(database.transferRequestsById)) {
+        if (transfer.supporterEmail !== supporterEmail) {
+          continue;
+        }
+
+        const matchFields = deriveMatchFields({
+          fallbackSupporterId: database.supportersByEmail[supporterEmail]?.account.supporterId,
+          sourceRecord,
+        });
+        database.transferRequestsById[transfer.id] = {
+          ...transfer,
+          ...matchFields,
+          status: transfer.status === "needs_support" ? "manual_review" : transfer.status,
+          statusNote:
+            transfer.status === "needs_support"
+              ? "Supporter-Datensatz wurde importiert. Manuelle Zuordnung und Transferfreigabe stehen noch aus."
+              : transfer.statusNote,
+          updatedAt: now,
+        };
+        matchedTransferIds.add(transfer.id);
+      }
+    }
+
+    appendTransferAuditLog(database, {
+      adminEmail,
+      adminRole,
+      action: "transfer_import",
+      targetEmail: null,
+      reason: "Transfer supporter records imported",
+      details: `Imported ${imported}, updated ${updated}, skipped ${skipped}, matched open transfer requests ${matchedTransferIds.size}.`,
+    });
+
+    return {
+      imported,
+      updated,
+      skipped,
+      matchedTransferRequests: matchedTransferIds.size,
+      totalSourceSupporters: Object.keys(database.transferSourceSupportersByEmail).length,
+    };
+  });
+
+  return summary;
 }

@@ -31,7 +31,7 @@ export type AdminAuditLogEntry = {
   occurredAt: string;
   adminEmail: string;
   adminRole: AdminRole;
-  action: "login" | "logout" | "wallet_update" | "transfer_intake" | "transfer_update";
+  action: "login" | "logout" | "wallet_update" | "transfer_intake" | "transfer_update" | "transfer_import";
   targetEmail: string | null;
   reason: string;
   details: string;
@@ -59,11 +59,36 @@ export type TransferRequestRecord = {
   statusNote: string;
   supporterRecordFound: boolean;
   matchedSupporterId: string | null;
+  sourceSupporterRecordId: string | null;
+  sourceReference: string | null;
+  allocationAmount: number | null;
+  allocationUnit: string | null;
+  transferEligibility: "unknown" | "eligible" | "hold" | "blocked";
   walletSignatureVerified: boolean;
   walletVerifiedAt: string | null;
   reviewedBy: string | null;
   reviewedAt: string | null;
   adminNotes: string;
+  preparedAt: string | null;
+  completedAt: string | null;
+  executionNetwork: string | null;
+  tokenContractAddress: string | null;
+  transactionHash: string | null;
+};
+
+export type TransferSourceSupporterRecord = {
+  id: string;
+  importedAt: string;
+  updatedAt: string;
+  supporterEmail: string;
+  displayName: string;
+  sourceSystem: string;
+  sourceReference: string;
+  allocationAmount: number | null;
+  allocationUnit: string;
+  transferEligibility: "eligible" | "hold" | "blocked";
+  currentWalletAddress: string | null;
+  notes: string;
 };
 
 export type TransferWalletChallengeRecord = {
@@ -81,6 +106,7 @@ export type SupporterDatabase = {
   sessionsByToken: Record<string, SupporterSessionRecord>;
   adminSessionsByToken: Record<string, AdminSessionRecord>;
   adminAuditLogs: AdminAuditLogEntry[];
+  transferSourceSupportersByEmail: Record<string, TransferSourceSupporterRecord>;
   transferRequestsById: Record<string, TransferRequestRecord>;
   transferWalletChallengesById: Record<string, TransferWalletChallengeRecord>;
 };
@@ -180,9 +206,18 @@ function createEmptyDatabase(): SupporterDatabase {
     sessionsByToken: {},
     adminSessionsByToken: {},
     adminAuditLogs: [],
+    transferSourceSupportersByEmail: {},
     transferRequestsById: {},
     transferWalletChallengesById: {},
   };
+}
+
+function normalizeTransferEligibility(value: unknown): "unknown" | "eligible" | "hold" | "blocked" {
+  if (value === "eligible" || value === "hold" || value === "blocked") {
+    return value;
+  }
+
+  return "unknown";
 }
 
 function normalizeTransferStatus(value: unknown): TransferRequestStatus {
@@ -244,6 +279,20 @@ function normalizeTransferRequest(value: unknown): TransferRequestRecord | null 
       typeof candidate.matchedSupporterId === "string" && candidate.matchedSupporterId.length > 0
         ? candidate.matchedSupporterId
         : null,
+    sourceSupporterRecordId:
+      typeof candidate.sourceSupporterRecordId === "string" && candidate.sourceSupporterRecordId.length > 0
+        ? candidate.sourceSupporterRecordId
+        : null,
+    sourceReference:
+      typeof candidate.sourceReference === "string" && candidate.sourceReference.length > 0
+        ? candidate.sourceReference
+        : null,
+    allocationAmount: typeof candidate.allocationAmount === "number" ? candidate.allocationAmount : null,
+    allocationUnit:
+      typeof candidate.allocationUnit === "string" && candidate.allocationUnit.length > 0
+        ? candidate.allocationUnit
+        : null,
+    transferEligibility: normalizeTransferEligibility(candidate.transferEligibility),
     walletSignatureVerified: Boolean(candidate.walletSignatureVerified),
     walletVerifiedAt:
       typeof candidate.walletVerifiedAt === "string" && candidate.walletVerifiedAt.length > 0
@@ -258,6 +307,69 @@ function normalizeTransferRequest(value: unknown): TransferRequestRecord | null 
         ? candidate.reviewedAt
         : null,
     adminNotes: typeof candidate.adminNotes === "string" ? candidate.adminNotes : "",
+    preparedAt: typeof candidate.preparedAt === "string" && candidate.preparedAt.length > 0 ? candidate.preparedAt : null,
+    completedAt:
+      typeof candidate.completedAt === "string" && candidate.completedAt.length > 0 ? candidate.completedAt : null,
+    executionNetwork:
+      typeof candidate.executionNetwork === "string" && candidate.executionNetwork.length > 0
+        ? candidate.executionNetwork
+        : null,
+    tokenContractAddress:
+      typeof candidate.tokenContractAddress === "string" && candidate.tokenContractAddress.length > 0
+        ? candidate.tokenContractAddress
+        : null,
+    transactionHash:
+      typeof candidate.transactionHash === "string" && candidate.transactionHash.length > 0
+        ? candidate.transactionHash
+        : null,
+  };
+}
+
+function normalizeTransferSourceSupporter(value: unknown): TransferSourceSupporterRecord | null {
+  if (!value || typeof value !== "object") {
+    return null;
+  }
+
+  const candidate = value as Partial<TransferSourceSupporterRecord>;
+  const supporterEmail =
+    typeof candidate.supporterEmail === "string" && candidate.supporterEmail.length > 0
+      ? normalizeEmail(candidate.supporterEmail)
+      : "";
+
+  if (!supporterEmail) {
+    return null;
+  }
+
+  const now = new Date().toISOString();
+  const eligibility = normalizeTransferEligibility(candidate.transferEligibility);
+
+  return {
+    id: typeof candidate.id === "string" && candidate.id.length > 0 ? candidate.id : createSessionToken(),
+    importedAt:
+      typeof candidate.importedAt === "string" && candidate.importedAt.length > 0 ? candidate.importedAt : now,
+    updatedAt: typeof candidate.updatedAt === "string" && candidate.updatedAt.length > 0 ? candidate.updatedAt : now,
+    supporterEmail,
+    displayName: typeof candidate.displayName === "string" ? candidate.displayName : "",
+    sourceSystem:
+      typeof candidate.sourceSystem === "string" && candidate.sourceSystem.length > 0
+        ? candidate.sourceSystem
+        : "supporter_export",
+    sourceReference:
+      typeof candidate.sourceReference === "string" && candidate.sourceReference.length > 0
+        ? candidate.sourceReference
+        : "",
+    allocationAmount: typeof candidate.allocationAmount === "number" ? candidate.allocationAmount : null,
+    allocationUnit:
+      typeof candidate.allocationUnit === "string" && candidate.allocationUnit.length > 0
+        ? candidate.allocationUnit
+        : "UNYT",
+    transferEligibility:
+      eligibility === "eligible" || eligibility === "hold" || eligibility === "blocked" ? eligibility : "eligible",
+    currentWalletAddress:
+      typeof candidate.currentWalletAddress === "string" && candidate.currentWalletAddress.length > 0
+        ? candidate.currentWalletAddress.trim().toLowerCase()
+        : null,
+    notes: typeof candidate.notes === "string" ? candidate.notes : "",
   };
 }
 
@@ -308,6 +420,7 @@ function normalizeDatabase(value: unknown): SupporterDatabase {
     sessionsByToken?: Record<string, unknown>;
     adminSessionsByToken?: Record<string, unknown>;
     adminAuditLogs?: unknown;
+    transferSourceSupportersByEmail?: Record<string, unknown>;
     transferRequestsById?: Record<string, unknown>;
     transferWalletChallengesById?: Record<string, unknown>;
   };
@@ -404,7 +517,8 @@ function normalizeDatabase(value: unknown): SupporterDatabase {
             entry.action === "logout" ||
             entry.action === "wallet_update" ||
             entry.action === "transfer_intake" ||
-            entry.action === "transfer_update"
+            entry.action === "transfer_update" ||
+            entry.action === "transfer_import"
               ? entry.action
               : "wallet_update",
           targetEmail:
@@ -415,6 +529,18 @@ function normalizeDatabase(value: unknown): SupporterDatabase {
           details: typeof entry.details === "string" ? entry.details : "",
         }))
     : [];
+
+  const transferSourceSupportersByEmail: Record<string, TransferSourceSupporterRecord> = {};
+  if (candidate.transferSourceSupportersByEmail && typeof candidate.transferSourceSupportersByEmail === "object") {
+    for (const [emailKey, recordValue] of Object.entries(candidate.transferSourceSupportersByEmail)) {
+      const normalizedRecord = normalizeTransferSourceSupporter(recordValue);
+      if (!normalizedRecord) {
+        continue;
+      }
+
+      transferSourceSupportersByEmail[normalizedRecord.supporterEmail || normalizeEmail(emailKey)] = normalizedRecord;
+    }
+  }
 
   const transferRequestsById: Record<string, TransferRequestRecord> = {};
   if (candidate.transferRequestsById && typeof candidate.transferRequestsById === "object") {
@@ -445,6 +571,7 @@ function normalizeDatabase(value: unknown): SupporterDatabase {
     sessionsByToken,
     adminSessionsByToken,
     adminAuditLogs,
+    transferSourceSupportersByEmail,
     transferRequestsById,
     transferWalletChallengesById,
   };

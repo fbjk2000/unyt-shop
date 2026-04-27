@@ -27,11 +27,21 @@ type TransferRequestRecord = {
   statusNote: string;
   supporterRecordFound: boolean;
   matchedSupporterId: string | null;
+  sourceSupporterRecordId: string | null;
+  sourceReference: string | null;
+  allocationAmount: number | null;
+  allocationUnit: string | null;
+  transferEligibility: "unknown" | "eligible" | "hold" | "blocked";
   walletSignatureVerified: boolean;
   walletVerifiedAt: string | null;
   reviewedBy: string | null;
   reviewedAt: string | null;
   adminNotes: string;
+  preparedAt: string | null;
+  completedAt: string | null;
+  executionNetwork: string | null;
+  tokenContractAddress: string | null;
+  transactionHash: string | null;
 };
 
 const statusOptions: { value: TransferStatus; label: string }[] = [
@@ -69,7 +79,12 @@ export function AdminTransferPanel() {
   const [status, setStatus] = useState<TransferStatus>("manual_review");
   const [statusNote, setStatusNote] = useState("");
   const [adminNotes, setAdminNotes] = useState("");
+  const [executionNetwork, setExecutionNetwork] = useState("");
+  const [tokenContractAddress, setTokenContractAddress] = useState("");
+  const [transactionHash, setTransactionHash] = useState("");
   const [saving, setSaving] = useState(false);
+  const [importJson, setImportJson] = useState("");
+  const [importing, setImporting] = useState(false);
 
   const selectedTransfer = useMemo(
     () => transfers.find((transfer) => transfer.id === selectedId) || null,
@@ -116,6 +131,9 @@ export function AdminTransferPanel() {
     setStatus(selectedTransfer.status);
     setStatusNote(selectedTransfer.statusNote);
     setAdminNotes(selectedTransfer.adminNotes);
+    setExecutionNetwork(selectedTransfer.executionNetwork || "");
+    setTokenContractAddress(selectedTransfer.tokenContractAddress || "");
+    setTransactionHash(selectedTransfer.transactionHash || "");
   }, [selectedTransfer]);
 
   async function saveTransfer(event: FormEvent<HTMLFormElement>) {
@@ -131,7 +149,7 @@ export function AdminTransferPanel() {
         method: "PATCH",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status, statusNote, adminNotes }),
+        body: JSON.stringify({ status, statusNote, adminNotes, executionNetwork, tokenContractAddress, transactionHash }),
       });
       const payload = (await response.json()) as {
         ok?: boolean;
@@ -158,6 +176,57 @@ export function AdminTransferPanel() {
     }
   }
 
+  async function importSupporters(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setImporting(true);
+    setMessage(null);
+
+    try {
+      const parsed = JSON.parse(importJson) as unknown;
+      const records = Array.isArray(parsed) ? parsed : (parsed as { records?: unknown[] }).records;
+      if (!Array.isArray(records)) {
+        setMessage("Import JSON must be an array or an object with a records array.");
+        return;
+      }
+
+      const response = await fetch("/api/admin/transfers/import-supporters", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ records }),
+      });
+      const payload = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+        summary?: {
+          imported: number;
+          updated: number;
+          skipped: number;
+          matchedTransferRequests: number;
+          totalSourceSupporters: number;
+        };
+      };
+
+      if (!response.ok || !payload.ok) {
+        setMessage(payload.message || "Unable to import supporter records.");
+        return;
+      }
+
+      const summary = payload.summary;
+      setImportJson("");
+      setMessage(
+        summary
+          ? `Import complete. Imported ${summary.imported}, updated ${summary.updated}, skipped ${summary.skipped}, matched ${summary.matchedTransferRequests}.`
+          : payload.message || "Import complete.",
+      );
+      await loadTransfers();
+    } catch {
+      setMessage("Import JSON could not be parsed or submitted.");
+    } finally {
+      setImporting(false);
+    }
+  }
+
   return (
     <Card className="p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -174,6 +243,24 @@ export function AdminTransferPanel() {
 
       <div className="mt-6 grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
         <div className="space-y-2">
+          <SubtleCard className="mb-4 p-4">
+            <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Supporter data import</p>
+            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+              Paste JSON records when the real supporter export is available. Required field: supporterEmail.
+            </p>
+            <form onSubmit={importSupporters} className="mt-4 space-y-3">
+              <textarea
+                value={importJson}
+                onChange={(event) => setImportJson(event.target.value)}
+                rows={5}
+                placeholder='[{"supporterEmail":"name@example.com","sourceReference":"backer-123","allocationAmount":1000,"allocationUnit":"UNYT","transferEligibility":"eligible"}]'
+                className="w-full rounded-[10px] border border-white/12 bg-white/6 px-4 py-3 text-xs text-white outline-none focus:border-white/30"
+              />
+              <Button type="submit" variant="secondary" disabled={importing || !importJson.trim()} className="w-full">
+                {importing ? "Importing" : "Import supporter records"}
+              </Button>
+            </form>
+          </SubtleCard>
           {transfers.length === 0 ? (
             <p className="text-sm text-[var(--muted)]">
               {message || "No transfer requests yet, or sign in above to load the queue."}
@@ -230,6 +317,24 @@ export function AdminTransferPanel() {
                     </span>
                   </p>
                   <p className="text-[var(--muted)]">
+                    Source reference
+                    <span className="mt-1 block font-semibold text-white">
+                      {selectedTransfer.sourceReference || "No source data imported"}
+                    </span>
+                  </p>
+                  <p className="text-[var(--muted)]">
+                    Allocation
+                    <span className="mt-1 block font-semibold text-white">
+                      {selectedTransfer.allocationAmount === null
+                        ? "Unknown"
+                        : `${selectedTransfer.allocationAmount} ${selectedTransfer.allocationUnit || "UNYT"}`}
+                    </span>
+                  </p>
+                  <p className="text-[var(--muted)]">
+                    Eligibility
+                    <span className="mt-1 block font-semibold text-white">{selectedTransfer.transferEligibility}</span>
+                  </p>
+                  <p className="text-[var(--muted)]">
                     Wallet proof
                     <span className="mt-1 block font-semibold text-white">
                       {selectedTransfer.walletSignatureVerified ? "Signature verified" : "No signature yet"}
@@ -260,6 +365,35 @@ export function AdminTransferPanel() {
                   </svg>
                 </div>
               </label>
+              <div className="grid gap-4 sm:grid-cols-3">
+                <label className="block space-y-2">
+                  <span className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Network</span>
+                  <input
+                    type="text"
+                    value={executionNetwork}
+                    onChange={(event) => setExecutionNetwork(event.target.value)}
+                    placeholder="e.g. polygon"
+                  />
+                </label>
+                <label className="block space-y-2">
+                  <span className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Token contract</span>
+                  <input
+                    type="text"
+                    value={tokenContractAddress}
+                    onChange={(event) => setTokenContractAddress(event.target.value)}
+                    placeholder="0x..."
+                  />
+                </label>
+                <label className="block space-y-2">
+                  <span className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Tx hash</span>
+                  <input
+                    type="text"
+                    value={transactionHash}
+                    onChange={(event) => setTransactionHash(event.target.value)}
+                    placeholder="Required for completed"
+                  />
+                </label>
+              </div>
               <label className="block space-y-2">
                 <span className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">Public status note</span>
                 <textarea
