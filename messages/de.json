@@ -1,0 +1,975 @@
+{
+  "navigation": {
+    "transfer": "Transfer",
+    "ecosystem": "Ökosystem",
+    "howItWorks": "So funktioniert es",
+    "security": "Sicherheit",
+    "faq": "Häufige Fragen"
+  },
+  "marketingHeader": {
+    "signIn": "Anmelden",
+    "getUnyts": "UNYTs holen",
+    "openApp": "App öffnen"
+  },
+  "announcementBar": {
+    "message": "Supporter v1 ist live für Prepaid-Credits, sichtbare Verlaufshistorie und EarnRM-Einlösung. Swap bleibt nur Vorschau.",
+    "dismiss": "Statusmeldung ausblenden"
+  },
+  "mobileBottomBar": {
+    "topUp": "Aufladen",
+    "redeem": "Einlösen",
+    "activity": "Aktivität"
+  },
+  "localeSwitcher": {
+    "label": "Sprache",
+    "switchTo": "Sprache wechseln zu {locale}",
+    "languages": {
+      "en": "Englisch",
+      "de": "Deutsch"
+    }
+  },
+  "footer": {
+    "description": "Prepaid-Utility-Credits für das Ökosystem mit einem sichtbaren Kontostand, klarer Aktivitätshistorie und unterstützten Nutzungsrechten.",
+    "relationshipLabel": "Systemkontext",
+    "startWithFintery": "Mit Fintery starten",
+    "aiosAuthority": "AIOS als Orientierungsebene",
+    "earnrmTool": "EarnRM als Live-Tool"
+  },
+  "appShell": {
+    "skipToContent": "Zum Inhalt springen",
+    "appLabel": "APP.UNYT.SHOP",
+    "backToSite": "Zurück zur Website",
+    "wallet": "Wallet-Bereich",
+    "topUp": "Aufladen",
+    "redeem": "Einlösen",
+    "activity": "Aktivität",
+    "admin": "Administration",
+    "swapPreview": "Swap-Vorschau",
+    "settings": "Einstellungen"
+  },
+  "pages": {
+    "wallet": {
+      "title": "UNYT-Wallet",
+      "description": "Supporter-orientierte Wallet-Ansicht mit Kontoeinrichtung, Anmeldung, Backend-Funding-Flow, erfasster Zuteilung, Aktivitätshistorie und unterstützter Einlösung."
+    },
+    "activity": {
+      "title": "Aktivität",
+      "description": "Einheitliche Credit-Aktivitätshistorie für Wallet-Aktionen und Einlösungen in Supporter v1.",
+      "ledgerTitle": "Ledger-Historie",
+      "ledgerBody": "Zuteilung, Aufladungen und Einlösungen werden in diesem Aktivitätsfeed protokolliert."
+    },
+    "swap": {
+      "title": "Swap-Roadmap-Vorschau",
+      "description": "Swap-Ausführung ist in Supporter v1 nicht live. Die aktive Supporter-Fläche ist das UNYT-Wallet mit Kontostand, Aktivitätshistorie und Einlösung.",
+      "heroTitle": "Swap ist noch nicht live",
+      "heroBody": "Supporter v1 ist bewusst wallet-first: Prepaid-Credits, sichtbarer erfasster Kontostand, Aktivitätshistorie und einlösbare Nutzungsrechte. Swap bleibt Vorschau, bis produktive Routing-, Compliance- und Settlement-Wege bereit sind.",
+      "liveNowBadge": "JETZT LIVE",
+      "liveNowBody": "Aufladen, Kontostand-Transparenz, Aktivitätshistorie und EarnRM-Einlösung.",
+      "previewBadge": "NUR VORSCHAU",
+      "previewBody": "Pair-Quotes, Routenwahl und Settlement-Bestätigung bleiben Roadmap-Bestandteile.",
+      "topUpCta": "Credits aufladen",
+      "redeemCta": "Für EarnRM einlösen"
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "description": "Supporter-Kontoprofil, Sitzungssteuerung und backend-erstellte Follow-up-Abläufe."
+    },
+    "admin": {
+      "title": "Superadmin-Bereich",
+      "description": "Alle Supporter-Wallets einsehen und Kontoprofil, Zuteilung sowie Non-Crypto-Kontostände bearbeiten."
+    },
+    "home": {
+      "hero": {
+        "eyebrow": "SUPPORTER-READY V1",
+        "line1": "Einmal aufladen.",
+        "line2": "Einlösen, wo es zählt.",
+        "subheadline": "Prepaid-Ökosystem-Credits mit klarer Kontostand-Transparenz und echtem Supporter-Nutzen.",
+        "body": "UNYT.shop v1 ist auf praktische Nutzung ausgelegt: Prepaid-Credits kaufen, einen sichtbaren Kontostand halten, Aktivitätshistorie prüfen und in unterstützte Produkt-Nutzungsrechte einlösen. Swap bleibt bewusst in der Vorschau, bis produktive Ausführungswege bereit sind.",
+        "walletCta": "Supporter-Wallet öffnen",
+        "ecosystemCta": "Ökosystem entdecken",
+        "note": "Karten-Top-up ist aktuell ein supporter-taugliches Gerüst. Produktive Abwicklung und Webhook-Bestätigung sind die nächste Integrationsphase."
+      },
+      "redemptionFeature": {
+        "eyebrow": "SUPPORTER V1 EINLÖSUNG",
+        "title": "Credits in unterstützte Produkt-Nutzungsrechte einlösen.",
+        "body": "Supporter v1 hält den ersten Pfad praktisch: Prepaid-Credits aufladen und dann in unterstützte Rechte einlösen. EarnRM User-Month-Credit ist live, weitere Routen sind klar als geplant markiert.",
+        "ctaLabel": "Im Wallet einlösen",
+        "bullets": {
+          "0": "Live-EarnRM User-Month-Einlösung",
+          "1": "Jede Einlösung wird in die Aktivitätshistorie geschrieben",
+          "2": "Live- und geplant-Status direkt sichtbar"
+        }
+      },
+      "faqSection": {
+        "eyebrow": "HÄUFIGE FRAGEN",
+        "title": "Antworten, bevor Support nötig wird.",
+        "body": "Praktische Fragen direkt am Conversion-Pfad beantworten, mit klarer Verfügbarkeitssprache.",
+        "promiseLabel": "Support-Versprechen",
+        "promiseTitle": "Klarer Status, praktische Antworten und sichtbare Support-Wege.",
+        "promiseBody": "UNYT.shop soll erklären, was live und was geplant ist, bevor Supporter nachfragen müssen, und dabei die nächsten Schritte klar sichtbar halten."
+      },
+      "features": {
+        "0": {
+          "eyebrow": "PRAKTISCH AB TAG EINS",
+          "title": "Ein Wallet-Erlebnis, das Supporter sofort verstehen.",
+          "body": "UNYT.shop v1 basiert auf Prepaid-Utility-Credits für das Ökosystem, nicht auf abstrakten Token-Versprechen. Aufladen, sichtbaren Kontostand halten und in unterstützte Nutzungsrechte einlösen.",
+          "ctaLabel": "Unterstützte Produkte ansehen",
+          "bullets": {
+            "0": "Prepaid-Credits mit klarer Sichtbarkeit auf Kontoebene",
+            "1": "Ein Kontostand-Modell über teilnehmende Produkte hinweg",
+            "2": "Praktischer Umfang ohne überzogene Funktionsversprechen"
+          }
+        },
+        "1": {
+          "eyebrow": "KOMMERZIELLE KLARHEIT",
+          "title": "Jede Aktion hat klaren Status und nächste Schritte.",
+          "body": "Supporter sollen jederzeit sehen, was live ist, was nur Vorschau ist und was nach jeder Aktion passiert. Die Oberfläche macht Kontostand, Aktivität und Einlösestatus leicht prüfbar.",
+          "ctaLabel": "So funktioniert es",
+          "bullets": {
+            "0": "Live- und geplante Funktionen sind direkt gekennzeichnet",
+            "1": "Aktivitätshistorie bestätigt Aufladungen und Einlösungen",
+            "2": "Support-Sprache ist knapp und operativ"
+          }
+        }
+      },
+      "featureMocks": {
+        "0": {
+          "title": "Einheitlicher Kontostand",
+          "value": "6 aktive Produkte",
+          "items": {
+            "0": "Fintery-Zahlungen",
+            "1": "TechSelec-Verlängerungen",
+            "2": "unyted.chat-Upgrades",
+            "3": "Community-Zugang"
+          }
+        },
+        "1": {
+          "title": "Checkout-Qualität",
+          "value": "3,2s durchschnittlicher Top-up-Flow",
+          "items": {
+            "0": "Karten-Top-up",
+            "1": "Bestätigungsbildschirm",
+            "2": "Mobiler Wallet-Flow",
+            "3": "Support-Sichtbarkeit"
+          }
+        },
+        "2": {
+          "title": "Einlösungsrechte",
+          "value": "EarnRM: 1 User-Month = 120 UNYTs",
+          "items": {
+            "0": "EarnRM-Credit (live)",
+            "1": "Ledger-Eintrag bei Einlösung",
+            "2": "Nutzungsrechte ausgestellt",
+            "3": "Alakai-Credit (geplant)"
+          }
+        }
+      }
+    },
+    "ecosystem": {
+      "hero": {
+        "eyebrow": "ÖKOSYSTEM",
+        "title": "Unterstützte Produkte mit klarem Live- und Geplant-Status.",
+        "body": "UNYT.shop v1 startet mit einem glaubwürdigen Supporter-Umfang: Prepaid-Credits, sichtbarer Kontostand und live EarnRM-Einlösung, mit weiteren Routen als geplant."
+      },
+      "filters": {
+        "searchSrOnly": "Unterstützte Produkte suchen",
+        "searchAria": "Unterstützte Produkte suchen",
+        "searchValue": "Alle unterstützten Produkte",
+        "filterAll": "Filter: Alle",
+        "availability": "Verfügbarkeit",
+        "tags": {
+          "0": "Handel",
+          "1": "Dienstleistungen",
+          "2": "Wallet-Utility"
+        }
+      },
+      "supportedProducts": {
+        "eyebrow": "UNTERSTÜTZTE PRODUKTE",
+        "title": "Ein praktisches Produktset statt Platzhalter-Versprechen.",
+        "body": "Jede Karte zeigt einen realen Use Case und sollte mit Blick auf live vs. geplant gelesen werden."
+      },
+      "howSpendingWorks": {
+        "eyebrow": "SO FUNKTIONIERT AUSGABE",
+        "title": "Einfach für Supporter, strukturiert für den Rollout.",
+        "body": "Ein Credit-Modell unterstützt Aufladung, Kontostand-Transparenz, Aktivitätshistorie und unterstützte Einlösung, ohne so zu tun, als wäre jeder Weg am ersten Tag live.",
+        "cards": {
+          "0": {
+            "title": "Einmal aufladen",
+            "body": "Supporter laden Prepaid-Credits über einen geführten Top-up-Flow mit klaren Betragsgrenzen auf."
+          },
+          "1": {
+            "title": "Jede Bewegung nachverfolgen",
+            "body": "Dasselbe Konto zeigt verfügbare Credits, ausstehende Beträge und Ledger-Historie an einem Ort."
+          },
+          "2": {
+            "title": "Dort einlösen, wo live",
+            "body": "Nutzungsrechte sind auf unterstützten Produkten bereits einlösbar, während geplante Routen klar gekennzeichnet bleiben."
+          }
+        }
+      },
+      "partner": {
+        "eyebrow": "PARTNER IM NETZWERK",
+        "title": "Bringe dein Produkt ins Ökosystem.",
+        "body": "Für Partner ist das Ziel klar: ein konsistentes Prepaid-Credit-Erlebnis mit transparentem Verfügbarkeitsstatus über Marken hinweg.",
+        "countBody": "{count} Ökosystem-Beispiele definieren aktuell die Supporter-Story. Neue Partner können dasselbe Kontostand-Modell mit klarem Rollout- und Support-Status erweitern.",
+        "note": "Integrations- und Settlement-Details werden nach Reifegrad ausgerollt. Die Produktsprache bleibt bewusst präzise, damit Supporter Verfügbarkeit nicht erraten müssen.",
+        "cta": "Mit UNYT partnern"
+      }
+    },
+    "howItWorks": {
+      "hero": {
+        "eyebrow": "SO FUNKTIONIERT ES",
+        "title": "Ein supporter-tauglicher Pfad von Aufladung bis Einlösung.",
+        "body": "Das Modell ist bewusst praktisch: Prepaid-Credits kaufen, sichtbaren Kontostand halten, Aktivitätshistorie sehen und in unterstützte Produkt-Nutzungsrechte einlösen."
+      },
+      "relationship": {
+        "eyebrow": "DIE LOGIK DAHINTER",
+        "title": "Warum diese drei Schritte zusammengehören.",
+        "body": "Jede Stufe reduziert Unklarheit. Top-up erzeugt den Kontostand, Aktivität bestätigt den Verlauf und Einlösung wandelt Credits in unterstützte Nutzungsrechte um.",
+        "stepLabel": "Schritt {step}",
+        "steps": {
+          "0": {
+            "title": "Prepaid-Credits kaufen",
+            "body": "Mit unterstützten Zahlungsmethoden aufladen und UNYTs dem Kontostand hinzufügen."
+          },
+          "1": {
+            "title": "Kontostand und Aktivität verfolgen",
+            "body": "Verfügbare Credits, ausstehende Beträge und ein klares Ledger jeder Aufladung und Einlösung einsehen."
+          },
+          "2": {
+            "title": "Unterstützte Nutzungsrechte einlösen",
+            "body": "Credits für live Produktrechte nutzen, beginnend mit EarnRM User-Month-Zugang, während weitere Produkte phasenweise ausgerollt werden."
+          }
+        }
+      },
+      "network": {
+        "eyebrow": "UNTERSTÜTZT IM NETZWERK",
+        "title": "Ein Modell, ausgerollt über teilnehmende Produkte.",
+        "body": "Supporter sollen klar sehen, wo Credits heute nutzbar sind und wo Routen noch geplant sind."
+      }
+    },
+    "faqPage": {
+      "hero": {
+        "eyebrow": "HÄUFIGE FRAGEN",
+        "title": "Klare Antworten auf praktische Supporter-Fragen.",
+        "body": "Das Produkt soll erklären, was UNYTs sind, was jetzt live ist und was Vorschau bleibt, bevor Supporter den Support brauchen."
+      },
+      "callout": {
+        "title": "Erst Klarheit, dann Conversion.",
+        "body": "Erklärungen sollten knapp, direkt und kommerziell belastbar sein. Das ist ein Prepaid-Utility-Credit-Erlebnis, kein spekulatives Narrativ."
+      }
+    },
+    "securityPage": {
+      "hero": {
+        "eyebrow": "SICHERHEIT",
+        "title": "Gebaut für Kontrolle, Transparenz und verlässlichen Support.",
+        "body": "Sicherheits-Sprache bleibt klar und nüchtern. Supporter sollen verstehen, was geschützt ist, was sie prüfen können und wo Support startet, wenn etwas geklärt werden muss."
+      },
+      "principles": {
+        "eyebrow": "PRINZIPIEN",
+        "title": "Eine seriöse Produktoberfläche beginnt mit Produktdisziplin.",
+        "body": "Gute Sicherheits-Kommunikation übertreibt nicht. Sie gibt klare Erwartungen, nutzbare Kontrollen und sichtbaren Status."
+      },
+      "walletSafety": {
+        "eyebrow": "WALLET- UND TRANSAKTIONSSICHERHEIT",
+        "title": "Klare Hinweise zu Konto, Zahlung und Wiederherstellung.",
+        "body": "Die Oberfläche soll bei sensiblen Aktionen helfen, ohne Nutzer mit Technikdetails zu überfordern."
+      },
+      "supportDisclosure": {
+        "eyebrow": "SUPPORT UND DISCLOSURE",
+        "title": "Verfügbarkeit hängt von Region, Kontostatus und unterstützten Routen ab.",
+        "body": "Diese v1 vermeidet bewusst Zusagen über den aktuellen Support hinaus. Nutzer sollen Verfügbarkeit, Bestätigungsstatus und nächste Support-Schritte vor der Aktion sehen.",
+        "riskTitle": "Risiko- und Verfügbarkeits-Hinweis",
+        "riskBody": "Wallet-Funktionen, Zahlungsrouten und spätere Swap-Verfügbarkeit können je nach Region, Kontoanforderungen und unterstützter Infrastruktur variieren. Das Produkt soll das direkt sagen.",
+        "recoveryTitle": "Wiederherstellung und Support-Pfad",
+        "recoveryBody": "Support soll bei Bedarf Identität prüfen, klare Zeitrahmen kommunizieren und keine Zusagen machen, die das System nicht halten kann."
+      }
+    },
+    "unytbotHolding": {
+      "hero": {
+        "eyebrow": "UNYTBOT",
+        "title": "UNYTBOT",
+        "subtitle": "Eine zukünftige Trading-Intelligence- und Automatisierungs-Ebene für aktive Ökosystem-Nutzer.",
+        "body": "UNYTBOT wird als praktische Produkt-Richtung für Entscheidungsunterstützung und Automatisierung im UNYT-Ökosystem entwickelt. Ziel ist, Setups schneller bewertbar zu machen, wiederholbare Workflows klarer ausführbar zu machen und Aktivität mit breiterer UNYT-Kontinuität zu verbinden.",
+        "primaryCta": "Tritt der UNYTBOT Early-Interest-Liste bei",
+        "secondaryCta": "Interesse registrieren",
+        "roadmapCta": "Roadmap ansehen"
+      },
+      "status": {
+        "badge": "AKTIVE ENTWICKLUNG",
+        "title": "Aktive Produktentwicklung mit sichtbaren Meilensteinen.",
+        "body": "UNYTBOT ist in Entwicklung und noch kein live veröffentlichtes Trading-Produkt. Der aktuelle Fokus liegt auf Konzeptvalidierung, Prototypen und Launch-Readiness.",
+        "milestones": {
+          "prototypeLabel": "Erste Prototypen",
+          "prototypeValue": "Ziel: Juli 2026",
+          "goLiveLabel": "Initiales Go-live",
+          "goLiveValue": "Ziel: September 2026"
+        },
+        "flowLabel": "Follow-up-Routing",
+        "flowBody": "Interesse von dieser Seite wird mit strukturiertem Source-Tagging in den Fintery / EarnRM Follow-up-Flow geleitet."
+      },
+      "what": {
+        "eyebrow": "WAS UNYTBOT IST",
+        "title": "Produktrichtung: Trading-Support, der praktisch statt abstrakt ist.",
+        "body": "UNYTBOT soll zu einer nutzbaren Intelligence-Ebene für Nutzer werden, die klarere Markt-Workflow-Unterstützung im UNYT-Ökosystem brauchen.",
+        "detail": "Im Fokus stehen Entscheidungsunterstützung, Workflow-Automatisierung und bessere operative Nutzbarkeit. Es ist kein Produkt mit Performance-Versprechen und beansprucht heute keine Live-Readiness.",
+        "capabilities": {
+          "0": "Support bei Setup-Monitoring und Signal-Interpretation",
+          "1": "Automatisierung für wiederholbare Aktionen und Routine-Workflows",
+          "2": "Ökosystem-gebundener Account-Kontext und Kontinuität",
+          "3": "klarere Ausführungsunterstützung mit gestuften Usability-Verbesserungen"
+        },
+        "audienceTitle": "Vorgesehene frühe Nutzergruppen",
+        "audience": {
+          "0": "Aktive Marktteilnehmer mit Bedarf an schnellerer strukturierter Analyse",
+          "1": "Ökosystem-Nutzer mit Bedarf an wiederholbarer Workflow-Unterstützung",
+          "2": "Kommerzielle Nutzer, die integriertes UNYT-gebundenes Trading-Tooling prüfen"
+        }
+      },
+      "why": {
+        "eyebrow": "WARUM ES WICHTIG IST",
+        "title": "Warum diese Richtung kommerziell relevant ist.",
+        "body": "UNYTBOT soll Ökosystem-Interesse in einen greifbaren Produktpfad mit praktischer Utility übersetzen.",
+        "bullets": {
+          "0": "Definiert eine konkrete Utility-Ebene statt Placeholder-Messaging",
+          "1": "Verbindet Intelligence-Support mit realen operativen Workflows",
+          "2": "Schafft einen strukturierten Early-Access-Pfad für qualifiziertes Interesse",
+          "3": "Bleibt diszipliniert bei Claims: keine Performance-Zusagen, kein verfrühtes Launch-Framing"
+        }
+      },
+      "roadmap": {
+        "eyebrow": "ROADMAP / ZEITLEISTE",
+        "title": "Roadmap: gestufter Pfad zu Prototyp und Launch-Ziel.",
+        "body": "Das Programm ist in klare Produktphasen gegliedert, damit Fortschritt, Risiko und Timing schnell einschätzbar sind.",
+        "prototypeLabel": "Erste funktionierende Prototypen",
+        "prototypeValue": "Ziel-Meilenstein: Juli 2026",
+        "goLiveLabel": "Target Go-live",
+        "goLiveValue": "Initiales Release-Ziel: September 2026",
+        "caveat": "Meilensteine sind richtungsweisende Ziele und können sich je nach Prototyp-Qualität, Testing-Ergebnissen und operativer Bereitschaft verschieben.",
+        "phaseLabel": "Phase {phase}",
+        "phases": {
+          "0": {
+            "name": "Konzept und Systemdesign",
+            "window": "Jetzt - früher Sommer 2026",
+            "bullets": {
+              "0": "Produktdefinition und Zielnutzer-Profilierung",
+              "1": "Strategie und Feature-Scope",
+              "2": "technische Architektur und Datenfluss-Design",
+              "3": "frühe Nutzerinteressen-Erfassung",
+              "4": "Schärfung der Marktpositionierung"
+            }
+          },
+          "1": {
+            "name": "Prototyp-Entwicklung",
+            "window": "Sommer 2026",
+            "bullets": {
+              "0": "erste funktionierende Prototypen (Ziel: Juli 2026)",
+              "1": "Interaktions- und Workflow-Testing",
+              "2": "Feature- und Usability-Refinement",
+              "3": "Feedback von früh interessierten Nutzern"
+            }
+          },
+          "2": {
+            "name": "Launch-Vorbereitung",
+            "window": "Spätsommer 2026",
+            "bullets": {
+              "0": "Stabilitäts-Hardening und operativer Feinschliff",
+              "1": "Onboarding- und Support-Flow-Setup",
+              "2": "Launch-Readiness-Checks",
+              "3": "Go-live-Vorbereitung"
+            }
+          },
+          "3": {
+            "name": "Initiales Launch-Ziel",
+            "window": "September 2026",
+            "bullets": {
+              "0": "erstes Live-Release-Ziel",
+              "1": "gestufter Rollout-Ansatz",
+              "2": "Nutzerfeedback und Iterations-Loop"
+            }
+          }
+        }
+      },
+      "lead": {
+        "eyebrow": "INTERESSE REGISTRIEREN",
+        "title": "Tritt der UNYTBOT Early-Interest-Liste bei",
+        "body": "Registriere dich jetzt für Prototyp-Updates, Launch-Timeline-Updates und Early-Access-Kommunikation.",
+        "detail": "Diese Seite ist Teil des breiteren UNYT-Ökosystem-Expansionspfads. Alle Einsendungen laufen in den Fintery / EarnRM Follow-up-Flow für strukturierte nächste Schritte.",
+        "roadmapCta": "Roadmap verfolgen",
+        "ecosystemCta": "Ökosystem-Kontext ansehen",
+        "sideTitle": "Pre-Launch-Kontext",
+        "footerNote": "UNYTBOT ist in Entwicklung und noch kein live veröffentlichtes Trading-Produkt.",
+        "formTitle": "Tritt der UNYTBOT Early-Interest-Liste bei",
+        "formBody": "Registriere dein Interesse, um Prototyp-Updates, Early-Access-News und künftige Release-Informationen für UNYTBOT zu erhalten.",
+        "form": {
+          "sharedHeadline": "Registriere dein Interesse",
+          "sharedBody": "Wenn du Updates erhalten, Early Access anfragen oder besprechen möchtest, wie das zu deinen Interessen passt, hinterlasse bitte unten deine Daten. Alle Einsendungen werden in unseren strukturierten Fintery / EarnRM Follow-up-Flow geleitet.",
+          "fields": {
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "email": "E-Mail",
+            "companyOptional": "Unternehmen / Organisation (optional)",
+            "countryRegion": "Land / Region",
+            "interestIn": "Interessenbereich",
+            "interestInOptions": {
+              "unytbot": "UNYTBOT",
+              "unytExchange": "UNYT Exchange",
+              "both": "Beides"
+            },
+            "interests": "Was interessiert dich am meisten?",
+            "interestOptions": {
+              "earlyAccess": "Early Access",
+              "productUpdates": "Produkt-Updates",
+              "commercialUse": "Kommerzielle Nutzung",
+              "partnership": "Partnerschaft",
+              "backerEcosystem": "Backer- / Ökosystem-Teilnahme"
+            },
+            "messageOptional": "Nachricht (optional)"
+          },
+          "submit": "Interesse registrieren",
+          "submitting": "Wird übermittelt...",
+          "success": "Interesse registriert. Wir melden uns mit Updates.",
+          "error": "Interesse konnte gerade nicht gesendet werden. Bitte erneut versuchen.",
+          "followUpNote": "Source-Tagging und Zeitstempel werden automatisch für das Follow-up-Routing erfasst."
+        }
+      }
+    },
+    "unytExchangeHolding": {
+      "hero": {
+        "eyebrow": "UNYT EXCHANGE",
+        "title": "UNYT Exchange",
+        "subtitle": "Eine zukünftige Exchange-Ebene mit strategischer Relevanz für das Ökosystem.",
+        "body": "UNYT Exchange ist eine beabsichtigte langfristige Infrastruktur-Richtung innerhalb des UNYT-Ökosystems. Die Arbeit läuft in gestuften Markt-, Rechts-, Compliance- und Technik-Strängen, damit Tragfähigkeit und Readiness vor Launch-Entscheidungen aufgebaut werden.",
+        "primaryCta": "Interesse an UNYT Exchange registrieren",
+        "secondaryCta": "Updates erhalten",
+        "roadmapCta": "Roadmap ansehen"
+      },
+      "important": {
+        "badge": "EARLY-INTEREST-SEITE",
+        "title": "Beabsichtigte Richtung, kein live Exchange-Service.",
+        "body": "Diese Seite bietet keinen öffentlichen Exchange-Service und keine regulierte Transaktionsumgebung. Sie kommuniziert strategische Richtung, Roadmap-Fortschritt und sorgfältige Readiness-Kriterien.",
+        "points": {
+          "0": "Heute ist keine live Exchange-Funktionalität verfügbar.",
+          "1": "Es wird nicht behauptet, dass Lizenzen oder Genehmigungen bereits gesichert sind.",
+          "2": "Fortschritt und Timing hängen von rechtlicher, regulatorischer, Compliance- und operativer Bereitschaft ab."
+        },
+        "continuity": "UNYT Exchange ist Teil eines breiteren UNYT-Ökosystem-Expansionspfads mit komplementären Utility-Ebenen."
+      },
+      "what": {
+        "eyebrow": "WAS UNYT EXCHANGE IST",
+        "title": "Eine zukünftige Exchange- und finanzielle Nutzbarkeits-Ebene im Ökosystem.",
+        "body": "Die Richtung ist der Aufbau einer glaubwürdigen exchange-orientierten Ebene, die langfristige Utility, Instrument-Zugang und finanzielle Nutzbarkeit im Ökosystem stärken kann.",
+        "detail": "Der Ansatz ist bewusst gestuft und compliance-aware. Rechtsstruktur, Jurisdiktionswahl, Lizenzvorbereitung und operative Kontrollen sind Kern-Workstreams.",
+        "focus": {
+          "0": "Research und Markt-Review für realen Bedarf",
+          "1": "Geografie- und Jurisdiktionspriorisierung",
+          "2": "rechtliche Strukturierung und Operating-Model-Design",
+          "3": "Compliance-Architektur und Kontrollplanung",
+          "4": "Lizenz- und Genehmigungsvorbereitung, wo erforderlich",
+          "5": "technische und operative Readiness-Planung"
+        }
+      },
+      "why": {
+        "eyebrow": "WARUM ES WICHTIG IST",
+        "title": "Warum das für Backer und Ökosystem-Teilnehmer wichtig ist.",
+        "body": "Eine zukünftige Exchange-Ebene kann die langfristige Logik finanzieller Nutzbarkeit im UNYT-Ökosystem klarer machen, wenn sie verantwortungsvoll und in Sequenz aufgebaut wird.",
+        "bullets": {
+          "0": "Erhöht strategische Klarheit, wie Ökosystem-Finanz-Utility sich entwickeln kann",
+          "1": "Schafft einen strukturierten Pfad für Backer-, Partner- und Commercial-Gespräche",
+          "2": "Hält Fortschritt in rechtlicher und Compliance-Realität verankert, bevor Launch-Schritte erfolgen"
+        },
+        "ecosystemLine": "UNYT Exchange ist kein isoliertes Domain-Projekt. Es soll neben UNYT Wallet- und Produkt-Flächen als Teil eines gemeinsamen Ökosystem-Kontinuitätsmodells stehen."
+      },
+      "roadmap": {
+        "eyebrow": "ROADMAP / ZEITLEISTE",
+        "title": "Roadmap: gestufte Arbeit Richtung End-2026 Launch-Readiness.",
+        "body": "Die Roadmap ist so aufgebaut, dass rechtliche, regulatorische und operative Abhängigkeiten von Beginn an sichtbar sind.",
+        "targetLabel": "ZIEL GO-LIVE",
+        "targetValue": "Ziel: gestuftes Go-live Richtung Ende 2026",
+        "caveat": "Timing ist richtungsweisend und hängt von rechtlicher, regulatorischer, Compliance- und operativer Bereitschaft ab.",
+        "phaseLabel": "Phase {phase}",
+        "phases": {
+          "0": {
+            "name": "Research und Markt-Review",
+            "window": "Jetzt - Sommer 2026",
+            "bullets": {
+              "0": "Analyse von Marktnachfrage und Segmenten",
+              "1": "Validierung von Ökosystem-Use-Cases",
+              "2": "Geografie- und Jurisdiktions-Screening",
+              "3": "Bewertung von Exchange-Modell-Optionen"
+            }
+          },
+          "1": {
+            "name": "Recht, Geografie und Strukturierung",
+            "window": "Sommer 2026",
+            "bullets": {
+              "0": "Design von Rechtsentität und Betriebsstruktur",
+              "1": "jurisdiktionale Strukturierungsentscheidungen",
+              "2": "Mapping regulatorischer Pfade",
+              "3": "Planung von Governance- und Kontrollrahmen"
+            }
+          },
+          "2": {
+            "name": "Compliance- und Lizenzvorbereitung",
+            "window": "Sommer - Herbst 2026",
+            "bullets": {
+              "0": "Definition der Compliance-Architektur",
+              "1": "Lizenz- und Genehmigungsvorbereitung, wo erforderlich",
+              "2": "Readiness für Policy-, Monitoring- und Reporting-Prozesse",
+              "3": "Planung operativer Kontrollen"
+            }
+          },
+          "3": {
+            "name": "Technischer Build und Launch-Readiness",
+            "window": "Herbst 2026",
+            "bullets": {
+              "0": "technische Implementierung und Integration",
+              "1": "Testing, Risiko-Review und Hardening",
+              "2": "Launch-Prozess-Readiness und finale Checks"
+            }
+          },
+          "4": {
+            "name": "Gestuftes Go-live-Ziel",
+            "window": "Richtung Ende 2026",
+            "bullets": {
+              "0": "gestuftes Launch-Zeitfenster als Ziel",
+              "1": "Post-Launch-Monitoring und Iterationsplanung",
+              "2": "Timing bleibt an Readiness-Kriterien gebunden"
+            }
+          }
+        }
+      },
+      "lead": {
+        "eyebrow": "INTERESSE REGISTRIEREN",
+        "title": "Interesse an UNYT Exchange registrieren",
+        "body": "Registriere dich jetzt für Roadmap-Updates und künftige Informationen, während diese Richtung voranschreitet.",
+        "detail": "Diese Seite ist Teil des breiteren UNYT-Ökosystem-Expansionspfads. Interest-Capture läuft in den Fintery / EarnRM Follow-up-Flow für strukturierte Kommunikation.",
+        "roadmapCta": "Roadmap verfolgen",
+        "ecosystemCta": "Ökosystem-Kontext ansehen",
+        "sideTitle": "Strategischer Pre-Launch-Kontext",
+        "footerNote": "UNYT Exchange ist eine beabsichtigte zukünftige Richtung, kein live Exchange-Service.",
+        "formTitle": "Interesse an UNYT Exchange registrieren",
+        "formBody": "Registriere dein Interesse, um Roadmap-Updates und künftige Informationen zu erhalten, während das UNYT-Exchange-Konzept voranschreitet.",
+        "form": {
+          "sharedHeadline": "Registriere dein Interesse",
+          "sharedBody": "Wenn du Updates erhalten, Early Access anfragen oder besprechen möchtest, wie das zu deinen Interessen passt, hinterlasse bitte unten deine Daten. Alle Einsendungen werden in unseren strukturierten Fintery / EarnRM Follow-up-Flow geleitet.",
+          "fields": {
+            "firstName": "Vorname",
+            "lastName": "Nachname",
+            "email": "E-Mail",
+            "companyOptional": "Unternehmen / Organisation (optional)",
+            "countryRegion": "Land / Region",
+            "interestIn": "Interessenbereich",
+            "interestInOptions": {
+              "unytbot": "UNYTBOT",
+              "unytExchange": "UNYT Exchange",
+              "both": "Beides"
+            },
+            "interests": "Was interessiert dich am meisten?",
+            "interestOptions": {
+              "earlyAccess": "Early Access",
+              "productUpdates": "Produkt-Updates",
+              "commercialUse": "Kommerzielle Nutzung",
+              "partnership": "Partnerschaft",
+              "backerEcosystem": "Backer- / Ökosystem-Teilnahme"
+            },
+            "messageOptional": "Nachricht (optional)"
+          },
+          "submit": "Updates erhalten",
+          "submitting": "Wird übermittelt...",
+          "success": "Interesse registriert. Wir melden uns mit Updates.",
+          "error": "Interesse konnte gerade nicht gesendet werden. Bitte erneut versuchen.",
+          "followUpNote": "Source-Tagging und Zeitstempel werden automatisch für das Follow-up-Routing erfasst."
+        }
+      }
+    }
+  },
+  "closingCta": {
+    "eyebrow": "SUPPORTER-READY V1",
+    "title": "Starte mit Credits, die du wirklich nutzen kannst.",
+    "body": "Supporter v1 bleibt kommerziell glaubwürdig: Prepaid-Ökosystem-Credits, sichtbarer Kontostand und Aktivitätshistorie plus live EarnRM-Einlösung in unterstützte Nutzungsrechte.",
+    "walletCta": "Supporter-Wallet öffnen",
+    "ecosystemCta": "Ökosystem entdecken"
+  },
+  "howItWorksGrid": {
+    "eyebrow": "SO FUNKTIONIEREN UNYTS",
+    "title": "So funktionieren UNYTS",
+    "body": "Ein klarer Supporter-Pfad: Prepaid-Credits aufladen, Kontoaktivität verfolgen und unterstützte Nutzungsrechte einlösen.",
+    "steps": {
+      "0": {
+        "stat": "Supporter-taugliche Aufladung",
+        "title": "Prepaid-Credits kaufen",
+        "body": "Mit unterstützten Zahlungsmethoden aufladen und UNYTs dem Kontostand hinzufügen."
+      },
+      "1": {
+        "stat": "Sichtbare Ledger-Historie",
+        "title": "Kontostand und Aktivität verfolgen",
+        "body": "Verfügbare Credits, ausstehende Beträge und einen klaren Verlauf jeder Aufladung und Einlösung sehen."
+      },
+      "2": {
+        "stat": "Klarheit bei live und geplant",
+        "title": "Unterstützte Nutzungsrechte einlösen",
+        "body": "Credits für live Produktrechte nutzen, beginnend mit EarnRM User-Month-Zugang, während weitere Produkte in geplanten Phasen ausgerollt werden."
+      }
+    }
+  },
+  "featureSplit": {
+    "supported": "Unterstützt",
+    "oneBalance": "Ein Kontostand über unterstützte Produkte"
+  },
+  "heroMockup": {
+    "quickActions": {
+      "topUpCredits": "Credits aufladen",
+      "redeemEarnRM": "EarnRM einlösen",
+      "viewActivity": "Aktivität ansehen",
+      "getSupport": "Support erhalten"
+    },
+    "creditBalanceLabel": "UNYT-Kontostand",
+    "focus": "Supporter-v1-Fokus: Aufladen, Aktivität und echte Einlösungsrechte.",
+    "pending": "Ausstehend",
+    "available": "Verfügbar",
+    "quickActionsTitle": "Schnellaktionen",
+    "latestActivityTitle": "Letzte Aktivität",
+    "activityStatus": {
+      "completed": "Abgeschlossen"
+    },
+    "activity": {
+      "0": {
+        "label": "Karten-Top-up"
+      },
+      "1": {
+        "label": "EarnRM User-Month-Einlösung"
+      },
+      "2": {
+        "label": "Supporter-Konto erstellt"
+      }
+    },
+    "redeemableProductsTitle": "Einlösbare Produkte",
+    "products": {
+      "0": "EarnRM (aktiv)",
+      "1": "Alakai (geplant)",
+      "2": "TechSelec",
+      "3": "Fintery",
+      "4": "unyted.chat",
+      "5": "unyted.online"
+    }
+  },
+  "ecosystemCards": {
+    "useUnytsFor": "UNYTs nutzen für"
+  },
+  "supporterActivity": {
+    "empty": "Es wurde noch keine Aktivität erfasst.",
+    "activity": "Aktivität",
+    "allocation": "Zuteilung",
+    "top_up": "Aufladung",
+    "redeem": "Einlösung",
+    "admin_adjustment": "Admin-Anpassung"
+  },
+  "settingsPanel": {
+    "accountProfileTitle": "Kontoprofil",
+    "accountProfileBody": "Kontoverknüpftes Wallet-Profil, Sitzungsstatus und Zuteilungsdatensatz.",
+    "accountLabel": "Konto",
+    "sessionStateLabel": "Sitzungsstatus",
+    "supporterId": "Supporter-ID: {id}",
+    "walletId": "Wallet-ID: {id}",
+    "allocationRecordLabel": "Zuteilungsdatensatz",
+    "signOut": "Aktuelle Sitzung abmelden",
+    "signingOut": "Abmeldung läuft...",
+    "followUpTitle": "Follow-up-Warteschlange",
+    "followUpBody": "Backend-erzeugte operative Aufgaben aus Registrierung, Aufladung und Einlösung.",
+    "noTasks": "Für dieses Konto sind noch keine Follow-up-Aufgaben erfasst.",
+    "taskStatusDue": "{status} • fällig {due}",
+    "routing": "Weiterleitung: {system}",
+    "internal": "intern"
+  },
+  "walletDashboard": {
+    "status": {
+      "supporterLinked": "Supporter-Konto verknüpft",
+      "integrationPending": "Integration ausstehend",
+      "registrationRequired": "Registrierung erforderlich"
+    },
+    "loading": {
+      "title": "Supporter-Wallet wird geladen",
+      "body": "Sitzung und Wallet-Status werden aus dem Backend abgerufen."
+    },
+    "access": {
+      "title": "Supporter-Wallet öffnen",
+      "body": "Erstelle ein Supporter-Konto oder melde dich mit bestehender E-Mail an, um die konto-verknüpfte Wallet-Ansicht zu aktivieren.",
+      "createAccount": "Konto erstellen",
+      "supporterName": "Supporter-Name",
+      "yourName": "Dein Name",
+      "supporterEmail": "Supporter-E-Mail",
+      "emailPlaceholder": "du@beispiel.de",
+      "creatingAccount": "Konto wird erstellt...",
+      "createOrLink": "Konto erstellen oder verknüpfen",
+      "signIn": "Anmelden",
+      "signingIn": "Anmeldung läuft...",
+      "signInExisting": "Bei bestehendem Konto anmelden",
+      "allocationPending": "Zuteilung ausstehend",
+      "signingOut": "Abmeldung läuft...",
+      "signOutSession": "Aktuelle Sitzung abmelden"
+    },
+    "source": "Quelle: {source}",
+    "hero": {
+      "walletLabel": "UNYT-Wallet",
+      "registeredBody": "Supporter-orientiertes Wallet für Kontinuität, sichtbaren erfassten Kontostand und operative Aktivitätshistorie.",
+      "unregisteredBody": "Erstelle oder verknüpfe ein Supporter-Konto, um Wallet-Kontostand, Funding-Aktionen und Einlösungswege zu aktivieren.",
+      "recordedBalance": "Erfasster Kontostand",
+      "pending": "Ausstehend",
+      "walletStatus": "Wallet-Status",
+      "latestActivity": "Letzte Aktivität",
+      "noActivity": "Keine Aktivität erfasst"
+    },
+    "scope": {
+      "title": "Wallet-Unterstützungsumfang",
+      "body": "Dieses Wallet bietet konto-verknüpfte Kontostand-Transparenz, Aktivitätshistorie, Funding und unterstützte Einlösungswege. Swap bleibt eine Roadmap-Vorschau."
+    },
+    "transferStatus": {
+      "title": "UNYT-Transferstatus",
+      "body": "Der eigentliche Transfer läuft über die geführte Transferseite. Dort können Supporter eine öffentliche Wallet-Adresse zur assistierten Prüfung einreichen und eine Referenznummer später erneut prüfen.",
+      "prepareCta": "Transfer vorbereiten",
+      "statusCta": "Status prüfen"
+    },
+    "badges": {
+      "liveNow": "JETZT LIVE",
+      "registrationRequired": "REGISTRIERUNG ERFORDERLICH",
+      "comingNext": "ALS NÄCHSTES"
+    },
+    "plannedSuffix": "(geplant)",
+    "topUp": {
+      "title": "Konto aufladen",
+      "body": "Aufladungen laufen über Backend-Wallet-Routen und werden sofort in die Aktivitätshistorie geschrieben.",
+      "amountUsd": "Betrag (USD)",
+      "method": "Top-up-Methode",
+      "processing": "Wird verarbeitet...",
+      "addCredits": "Credits hinzufügen",
+      "limits": "Top-up-Limits: {min} bis {max} pro Einreichung.",
+      "registrationRequired": "Registrierung erforderlich, bevor Funding verfügbar ist.",
+      "registrationBody": "Erstelle oder melde dich in ein Supporter-Konto an, um diese Aktion zu aktivieren."
+    },
+    "accountStatus": {
+      "title": "Kontostatus",
+      "body": "Sitzung, Zuteilung und Follow-up-Operationen für das aktuelle Supporter-Konto.",
+      "session": "Sitzung",
+      "allocationStatus": "Zuteilungsstatus",
+      "account": "Konto"
+    },
+    "supporterId": "Supporter-ID: {id}",
+    "walletId": "Wallet-ID: {id}",
+    "redeem": {
+      "title": "Nutzungsrechte einlösen",
+      "body": "Die live Einlösung unterstützt aktuell EarnRM User-Month-Nutzungsrechte.",
+      "unitsToRedeem": "Einzulösende Einheiten",
+      "redeeming": "Einlösung läuft...",
+      "cta": "Im Wallet einlösen",
+      "noLiveProductConfigured": "Kein live Einlösungsprodukt konfiguriert.",
+      "registrationRequired": "Registrierung erforderlich, bevor Einlösung verfügbar ist.",
+      "registrationBody": "Zuerst Supporter-Identität verknüpfen, dann unterstützte Nutzungsrechte einlösen.",
+      "plannedNextRoutes": "Geplante nächste Routen",
+      "unitPrice": "Stückpreis: {credits} pro {unit}"
+    },
+    "followUpTasks": {
+      "title": "Follow-up-Aufgaben",
+      "body": "Operative Aufgaben, ausgelöst durch Registrierung, Funding und Einlösungsereignisse.",
+      "empty": "Keine offenen Follow-up-Aufgaben.",
+      "statusDue": "{status} • fällig {due}",
+      "routedVia": "Geroutet über {system}",
+      "internalQueue": "interne Warteschlange"
+    },
+    "recentActivity": {
+      "title": "Letzte Aktivität",
+      "body": "Registrierung, Zuteilung, Aufladung und Einlösung werden in dieser Aktivitätshistorie erfasst."
+    }
+  },
+  "pagePlaceholder": {
+    "openWallet": "Wallet öffnen",
+    "exploreEcosystem": "Ökosystem entdecken",
+    "balance": "Kontostand",
+    "balanceValue": "1.240,00 UNYTs",
+    "latestPayment": "Letzte Zahlung",
+    "latestPaymentTitle": "Sandbox-Aufladung erfasst",
+    "latestPaymentValue": "Vor 2 Min abgeschlossen"
+  },
+  "walletProvider": {
+    "messages": {
+      "requestCompleted": "Anfrage abgeschlossen.",
+      "requestFailed": "Anfrage fehlgeschlagen.",
+      "unableToRegisterNow": "Supporter-Konto kann gerade nicht registriert werden.",
+      "unableToSignInNow": "Anmeldung ist gerade nicht möglich.",
+      "unableToTopUpNow": "Top-up-Anfrage kann gerade nicht abgeschlossen werden.",
+      "unableToRedeemNow": "Einlösung kann gerade nicht abgeschlossen werden.",
+      "signedOut": "Abgemeldet.",
+      "unableToSignOut": "Abmeldung nicht möglich.",
+      "unableToSignOutNow": "Abmeldung ist gerade nicht möglich."
+    }
+  },
+  "adminPanel": {
+    "roles": {
+      "viewer": "Betrachter",
+      "editor": "Editor",
+      "unknown": "unbekannt"
+    },
+    "messages": {
+      "unableToLoadWalletList": "Wallet-Liste kann nicht geladen werden.",
+      "unableToLoadSelectedWallet": "Ausgewählte Wallet kann nicht geladen werden.",
+      "loginFailed": "Anmeldung fehlgeschlagen.",
+      "signedIn": "Angemeldet.",
+      "unableToSignInNow": "Anmeldung ist gerade nicht möglich.",
+      "viewerCannotEditWallets": "Betrachter-Rolle darf Wallets nicht bearbeiten.",
+      "reasonRequiredForWalletEdits": "Für Wallet-Änderungen ist eine Begründung erforderlich.",
+      "updateFailed": "Aktualisierung fehlgeschlagen.",
+      "walletUpdated": "Wallet aktualisiert.",
+      "unableToSaveWalletUpdates": "Wallet-Änderungen können nicht gespeichert werden."
+    },
+    "auth": {
+      "checkingSession": "Admin-Sitzung wird geprüft",
+      "loadingAccess": "Admin-Zugriff und Rollenrechte werden geprüft.",
+      "loginTitle": "Superadmin-Anmeldung",
+      "loginBody": "Mit Superadmin-Zugangsdaten anmelden, um alle Supporter-Wallets zu sehen und Kontoprofil oder Kontostandswerte zu bearbeiten.",
+      "adminEmail": "Admin-E-Mail",
+      "adminEmailPlaceholder": "admin@unyt.shop",
+      "password": "Passwort",
+      "passwordPlaceholder": "Superadmin-Passwort",
+      "signingIn": "Anmeldung läuft...",
+      "signInCta": "Als Superadmin anmelden"
+    },
+    "console": {
+      "title": "Superadmin-Konsole",
+      "signedInAs": "Angemeldet als {email} ({role}-Rolle).",
+      "editorAccess": "Du kannst Supporter-Profile und Non-Crypto-Kontostände bearbeiten.",
+      "viewerAccess": "Nur-Lese-Zugriff ist aktiv.",
+      "maxDelta": "Maximale Kontostand-Änderung pro Edit: {amount} UNYTs.",
+      "exportCsv": "Audit-Log exportieren (CSV)",
+      "signOut": "Abmelden"
+    },
+    "wallets": {
+      "title": "Wallet-Übersicht",
+      "refresh": "Aktualisieren",
+      "refreshing": "Wird aktualisiert...",
+      "empty": "Keine Wallets gefunden.",
+      "availableWithState": "{available} verfügbar • {state}",
+      "authState": {
+        "registered": "registriert",
+        "anonymous": "anonym"
+      }
+    },
+    "edit": {
+      "title": "Ausgewählte Wallet bearbeiten",
+      "displayName": "Anzeigename",
+      "email": "E-Mail",
+      "availableCredits": "Verfügbare Credits",
+      "pendingCredits": "Ausstehende Credits",
+      "allocationAmount": "Zuteilungsbetrag",
+      "allocationStatus": "Zuteilungsstatus",
+      "pendingIdentity": "Identitätsprüfung ausstehend",
+      "recorded": "Erfasst",
+      "reason": "Begründung",
+      "reasonPlaceholder": "Pflichtfeld. Erkläre, warum diese Wallet-Änderung nötig ist.",
+      "saving": "Wird gespeichert...",
+      "save": "Wallet-Änderungen speichern",
+      "viewerCannotEdit": "Betrachter-Rolle darf Wallets nicht bearbeiten.",
+      "selectWallet": "Wähle eine Wallet, um Details zu sehen und zu bearbeiten.",
+      "selectedWallet": "Ausgewählte Wallet",
+      "walletId": "Wallet-ID: {id}",
+      "ledgerAndTasks": "Ledger-Einträge: {ledger} • Follow-up-Aufgaben: {tasks}",
+      "lastActivity": "Letzte Aktivität: {datetime}"
+    },
+    "audit": {
+      "title": "Letztes Admin-Audit-Log",
+      "empty": "Keine Audit-Einträge erfasst.",
+      "entryLine": "{action} von {adminEmail} ({role})",
+      "targetWithReason": "Ziel: {target} • {reason}",
+      "actions": {
+        "login": "Login",
+        "logout": "Logout",
+        "walletUpdate": "Wallet-Update"
+      }
+    }
+  },
+  "trustBand": {
+    "eyebrow": "FÜR VERTRAUEN GEBAUT, NICHT FÜR HYPE",
+    "title": "Gebaut für Vertrauen, nicht für Hype.",
+    "body": "Jeder Teil von UNYT.shop soll Kontrolle, Transparenz und Produktreife vermitteln: von klaren Kontoständen und sichtbarer Aktivität bis zu direktem Support und Disclosure.",
+    "items": {
+      "0": {
+        "title": "Klarer Umfang",
+        "body": "Das Produkt zeigt klar, was jetzt live ist und was Vorschau bleibt."
+      },
+      "1": {
+        "title": "Sichtbarer Kontostand und Ledger",
+        "body": "Supporter können Credits, ausstehende Beträge und abgeschlossene Aktivität ohne Unklarheit prüfen."
+      },
+      "2": {
+        "title": "Operativer Support",
+        "body": "Support- und Recovery-Hinweise sind für praktische Lösung geschrieben, nicht als Marketing-Sprache."
+      }
+    }
+  },
+  "faqAccordion": {
+    "items": {
+      "0": {
+        "question": "Was sind UNYTs?",
+        "answer": "UNYTs sind Prepaid-Utility-Credits für unterstützte Produkte und Services innerhalb des UNYT-Netzwerks."
+      },
+      "1": {
+        "question": "Was ist in Supporter v1 bereits live?",
+        "answer": "Supporter v1 ist live für Top-up-Grundfluss, sichtbaren Kontostand, Aktivitätshistorie und EarnRM-Einlösung in Nutzungsrechte."
+      },
+      "2": {
+        "question": "Wo kann ich UNYTs heute nutzen?",
+        "answer": "Die supporter-taugliche Einlösung startet mit EarnRM User-Month-Credit. Weitere Routen sind klar als live oder geplant gekennzeichnet."
+      },
+      "3": {
+        "question": "Wie lade ich Credits auf?",
+        "answer": "Betrag auswählen, unterstützte Methode wählen und bestätigen. Die Aufladung erscheint anschließend im Kontostand und im Aktivitäts-Ledger."
+      },
+      "4": {
+        "question": "Kann ich Kontostand und Aktivitätshistorie sehen?",
+        "answer": "Ja. Das Wallet zeigt verfügbare Credits, ausstehende Credits und einen zeitgestempelten Verlauf von Aufladungen und Einlösungen."
+      },
+      "5": {
+        "question": "Ist Swap live?",
+        "answer": "Nein. Swap bleibt in Supporter v1 eine Roadmap-Vorschau, bis Ausführung, Compliance und Settlement vollständig produktionsreif sind."
+      },
+      "6": {
+        "question": "Sind UNYTs E-Geld oder ein Investmentprodukt?",
+        "answer": "Nein. UNYTs sind als Utility-Credits für unterstützte Produkt-Nutzungsrechte positioniert, nicht als Investment oder spekulatives Finanzinstrument."
+      },
+      "7": {
+        "question": "Wie erhalte ich Support?",
+        "answer": "Nutze den Wallet-Supportpfad für Konto- und Einlösungsfragen. Antworten fokussieren auf praktische Lösungsschritte und klare Zeitrahmen."
+      }
+    }
+  },
+  "logoStrip": {
+    "eyebrow": "BEREITS FÜR REALE PRODUKTE GEBAUT",
+    "title": "Bereits für reale Produkte gebaut.",
+    "body": "Von Handel und Services bis Community und Kommunikation: UNYTs sind dafür gemacht, dort zu funktionieren, wo Menschen tatsächlich Transaktionen durchführen.",
+    "items": {
+      "0": {
+        "category": "Handel",
+        "highlight": "Unterstützter Checkout"
+      },
+      "1": {
+        "category": "Dienstleistungen",
+        "highlight": "Geplanter Rollout"
+      },
+      "2": {
+        "category": "Tools",
+        "highlight": "Eingegrenzter Support"
+      },
+      "3": {
+        "category": "Community",
+        "highlight": "Zugangs-Utility"
+      },
+      "4": {
+        "category": "Kommunikation",
+        "highlight": "Premium-Funktionen"
+      },
+      "5": {
+        "category": "Utility",
+        "highlight": "Jetzt live"
+      }
+    }
+  }
+}

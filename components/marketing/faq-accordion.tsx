@@ -1,21 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { faqItems } from "@/lib/content";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export function FaqAccordion({
-  items = faqItems,
+  items,
   compact = false,
 }: {
   items?: readonly { question: string; answer: string }[];
   compact?: boolean;
 }) {
+  const t = useTranslations("faqAccordion");
+  const defaultItems = [0, 1, 2, 3, 4, 5, 6, 7].map((index) => ({
+    question: t(`items.${index}.question`),
+    answer: t(`items.${index}.answer`),
+  }));
+  const activeItems = items || defaultItems;
   const [openItem, setOpenItem] = useState(0);
 
   return (
     <div className="space-y-3">
-      {items.map((item, index) => {
+      {activeItems.map((item, index) => {
         const open = index === openItem;
         const panelId = `faq-panel-${index}`;
         const buttonId = `faq-trigger-${index}`;

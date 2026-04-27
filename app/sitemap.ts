@@ -3,6 +3,9 @@ import { siteConfig } from "@/lib/site";
 
 const routes = [
   "",
+  "/transfer",
+  "/unytbot",
+  "/unyt-exchange",
   "/ecosystem",
   "/how-it-works",
   "/security",
@@ -14,9 +17,16 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
-    url: `${siteConfig.url}${route}`,
-    lastModified: new Date(),
-  }));
-}
+  const lastModified = new Date();
 
+  return [
+    ...routes.map((route) => ({
+      url: `${siteConfig.url}${route}`,
+      lastModified,
+    })),
+    {
+      url: "https://transfer.unyt.shop",
+      lastModified,
+    },
+  ];
+}

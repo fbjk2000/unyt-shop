@@ -1,6 +1,6 @@
 export const brandLogos = {
   lockup: {
-    src: "/brand/logo-lockup-horizontal.svg",
+    src: "/brand/logo-lockup-gradient.svg",
     width: 2200,
     height: 520,
   },
@@ -29,4 +29,3 @@ export const brandMotifs = {
   halo: "/brand/generated/hero-halo.svg",
   emptyState: "/brand/generated/empty-state-brand.svg",
 } as const;
-

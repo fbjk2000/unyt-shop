@@ -1,10 +1,13 @@
-import Link from "next/link";
 import { ecosystemItems } from "@/lib/content";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { Reveal } from "@/components/motion/reveal";
 import { Card, SubtleCard } from "@/components/ui/card";
 
-export function EcosystemCards() {
+export async function EcosystemCards() {
+  const t = await getTranslations("ecosystemCards");
+
   return (
     <div className="grid gap-4 lg:grid-cols-2">
       {ecosystemItems.map((item, index) => (
@@ -26,11 +29,11 @@ export function EcosystemCards() {
             </div>
             <p className="mt-5 text-base leading-7 text-[var(--muted)]">{item.description}</p>
             <SubtleCard className="mt-6 p-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">Use UNYTs for</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">{t("useUnytsFor")}</p>
               <p className="mt-2 text-sm leading-6 text-white">{item.useCase}</p>
             </SubtleCard>
             <Link
-              href="/app/wallet"
+              href={item.href}
               className="mt-6 inline-flex min-h-11 items-center rounded-full border border-white/10 px-4 text-sm font-semibold text-white hover:bg-white/6"
             >
               {item.ctaLabel}

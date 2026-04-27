@@ -1,30 +1,52 @@
 import { buildMetadata } from "@/lib/metadata";
+import { getTranslations } from "next-intl/server";
 import { AppShell } from "@/components/layout/app-shell";
-import { SwapOverview } from "@/components/app/swap-overview";
-import { SwapPanels } from "@/components/app/swap-panels";
+import { Button } from "@/components/ui/button";
+import { Card, SubtleCard } from "@/components/ui/card";
 
 export const metadata = buildMetadata({
-  title: "Swap | UNYT.shop",
+  title: "Swap Preview | UNYT.shop",
   description:
-    "Review supported swap pairs, quote details, recent activity, and availability notes in a premium mobile-first flow.",
+    "Swap is a roadmap preview in supporter v1. Live functionality currently focuses on prepaid credits, visible balance, activity history, and EarnRM redemption.",
   path: "/app/swap",
 });
 
-export default function SwapPage() {
+export default async function SwapPage() {
+  const t = await getTranslations("pages.swap");
+
   return (
     <AppShell
-      title="Swap"
-      description="Precise quote presentation and a calm, mobile-first conversion flow."
+      title={t("title")}
+      description={t("description")}
     >
-      <section className="rounded-[32px] border border-white/10 bg-white/4 p-5 sm:p-6">
-        <p className="text-sm leading-6 text-[var(--muted)]">
-          When users want to move into major supported digital assets, the swap experience should
-          feel precise and transparent — with clear quotes, visible fees, and strong status
-          feedback throughout.
+      <Card className="p-6 sm:p-7">
+        <h2 className="text-2xl font-semibold tracking-[-0.04em] text-white">{t("heroTitle")}</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-[var(--muted)]">
+          {t("heroBody")}
         </p>
-      </section>
-      <SwapOverview />
-      <SwapPanels />
+
+        <div className="mt-6 grid gap-3 md:grid-cols-2">
+          <SubtleCard className="p-4">
+            <span className="status-pill-live">{t("liveNowBadge")}</span>
+            <p className="mt-2 text-sm text-white">
+              {t("liveNowBody")}
+            </p>
+          </SubtleCard>
+          <SubtleCard className="p-4">
+            <span className="status-pill-preview">{t("previewBadge")}</span>
+            <p className="mt-2 text-sm text-white">
+              {t("previewBody")}
+            </p>
+          </SubtleCard>
+        </div>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Button href="/app/wallet#top-up">{t("topUpCta")}</Button>
+          <Button href="/app/wallet#redeem" variant="secondary">
+            {t("redeemCta")}
+          </Button>
+        </div>
+      </Card>
     </AppShell>
   );
 }

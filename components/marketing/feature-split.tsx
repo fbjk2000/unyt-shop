@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { Card, SubtleCard } from "@/components/ui/card";
 import { BrandLogo } from "@/components/brand/BrandLogo";
@@ -17,7 +18,7 @@ type FeatureSplitProps = {
   reverse?: boolean;
 };
 
-export function FeatureSplit({
+export async function FeatureSplit({
   eyebrow,
   title,
   body,
@@ -29,6 +30,8 @@ export function FeatureSplit({
   mockItems,
   reverse,
 }: FeatureSplitProps) {
+  const t = await getTranslations("featureSplit");
+
   return (
     <div className="shell py-8 sm:py-10 lg:py-12">
       <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
@@ -58,13 +61,13 @@ export function FeatureSplit({
               <div className="flex items-center justify-between">
                 <p className="text-sm text-[var(--muted)]">{mockTitle}</p>
                 <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-[var(--muted)]">
-                  Supported
+                  {t("supported")}
                 </span>
               </div>
               <div className="relative overflow-hidden rounded-[24px] border border-white/8 bg-black/16 p-5">
                 <div className="brand-pattern-overlay absolute inset-0 opacity-[0.08]" />
                 <p className="text-3xl font-semibold text-white">{mockValue}</p>
-                <p className="mt-2 text-sm text-[var(--muted)]">One balance across supported products</p>
+                <p className="mt-2 text-sm text-[var(--muted)]">{t("oneBalance")}</p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {mockItems.map((item) => (

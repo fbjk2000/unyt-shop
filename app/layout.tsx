@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Newsreader } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
 
@@ -19,13 +20,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" className={`${manrope.variable} ${newsreader.variable}`}>
+    <html lang={locale} className={`${manrope.variable} ${newsreader.variable}`}>
       <body>{children}</body>
     </html>
   );

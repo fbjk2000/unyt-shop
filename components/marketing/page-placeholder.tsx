@@ -1,12 +1,13 @@
+import { getTranslations } from "next-intl/server";
 import { BrandMotif } from "@/components/brand/BrandMotif";
 import { Button } from "@/components/ui/button";
 
-export function PagePlaceholder({
+export async function PagePlaceholder({
   eyebrow,
   title,
   body,
   ctaHref = "/app/wallet",
-  ctaLabel = "Open wallet",
+  ctaLabel,
 }: {
   eyebrow: string;
   title: string;
@@ -14,6 +15,9 @@ export function PagePlaceholder({
   ctaHref?: string;
   ctaLabel?: string;
 }) {
+  const t = await getTranslations("pagePlaceholder");
+  const primaryCtaLabel = ctaLabel || t("openWallet");
+
   return (
     <section className="shell py-20">
       <div className="card grid gap-8 overflow-hidden p-8 md:p-12 lg:grid-cols-[minmax(0,1.1fr)_320px]">
@@ -26,9 +30,9 @@ export function PagePlaceholder({
           </h1>
           <p className="max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">{body}</p>
           <div className="flex flex-wrap gap-3">
-            <Button href={ctaHref}>{ctaLabel}</Button>
+            <Button href={ctaHref}>{primaryCtaLabel}</Button>
             <Button href="/ecosystem" variant="secondary">
-              Explore ecosystem
+              {t("exploreEcosystem")}
             </Button>
           </div>
         </div>
@@ -37,13 +41,13 @@ export function PagePlaceholder({
           <BrandMotif variant="emptyState" className="absolute right-4 top-4 h-28 w-28 opacity-70" />
           <div className="relative space-y-3">
             <div className="rounded-[24px] border border-white/10 bg-[#0f172a]/90 p-4">
-              <p className="text-sm text-[var(--muted)]">Balance</p>
-              <p className="mt-2 text-3xl font-semibold text-white">18,400 UNYTs</p>
+              <p className="text-sm text-[var(--muted)]">{t("balance")}</p>
+              <p className="mt-2 text-3xl font-semibold text-white">{t("balanceValue")}</p>
             </div>
             <div className="rounded-[24px] border border-white/10 bg-white/4 p-4">
-              <p className="text-sm text-[var(--muted)]">Latest payment</p>
-              <p className="mt-2 text-base text-white">TechSelec annual tools plan</p>
-              <p className="mt-1 text-sm text-[var(--muted)]">2,400 UNYTs • Confirmed</p>
+              <p className="text-sm text-[var(--muted)]">{t("latestPayment")}</p>
+              <p className="mt-2 text-base text-white">{t("latestPaymentTitle")}</p>
+              <p className="mt-1 text-sm text-[var(--muted)]">{t("latestPaymentValue")}</p>
             </div>
           </div>
         </div>

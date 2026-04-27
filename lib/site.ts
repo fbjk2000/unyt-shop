@@ -1,13 +1,14 @@
 export const siteConfig = {
   name: "UNYT.shop",
   description:
-    "Use UNYTs across Fintery, Alakai, TechSelec, Unyted.world, Unyted.Chat, Earnrm.com, and future services.",
+    "Prepaid ecosystem utility credits with visible balance, activity history, and supported redemption paths.",
   url: "https://unyt.shop",
 };
 
 export const navigationItems = [
-  { href: "/ecosystem", label: "Ecosystem" },
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/security", label: "Security" },
-  { href: "/faq", label: "FAQ" },
+  { href: "/transfer", labelKey: "transfer" },
+  { href: "/ecosystem", labelKey: "ecosystem" },
+  { href: "/how-it-works", labelKey: "howItWorks" },
+  { href: "/security", labelKey: "security" },
+  { href: "/faq", labelKey: "faq" },
 ] as const;

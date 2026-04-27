@@ -1,31 +1,24 @@
 import { buildMetadata } from "@/lib/metadata";
+import { getTranslations } from "next-intl/server";
 import { AppShell } from "@/components/layout/app-shell";
-import { WalletBalanceCard } from "@/components/app/wallet-balance-card";
-import { WalletQuickActions } from "@/components/app/wallet-quick-actions";
-import { WalletDestinations } from "@/components/app/wallet-destinations";
-import { WalletActivity } from "@/components/app/wallet-activity";
-import { WalletSupport } from "@/components/app/wallet-support";
+import { SupporterWalletDashboard } from "@/components/app/supporter-wallet-dashboard";
 
 export const metadata = buildMetadata({
   title: "Wallet | UNYT.shop",
   description:
-    "View balance, quick actions, supported spend destinations, and recent activity across the UNYT ecosystem.",
+    "Supporter-facing UNYT wallet with backend registration, account login, funding, recorded allocation, and activity history.",
   path: "/app/wallet",
 });
 
-export default function WalletPage() {
+export default async function WalletPage() {
+  const t = await getTranslations("pages.wallet");
+
   return (
     <AppShell
-      title="Wallet"
-      description="A single balance for every supported product, with clear actions and activity."
+      title={t("title")}
+      description={t("description")}
     >
-      <WalletBalanceCard />
-      <WalletQuickActions />
-      <div className="grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
-        <WalletDestinations />
-        <WalletActivity />
-      </div>
-      <WalletSupport />
+      <SupporterWalletDashboard />
     </AppShell>
   );
 }

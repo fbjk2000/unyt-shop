@@ -1,0 +1,30 @@
+UNYTs logo package
+==================
+
+Created assets
+--------------
+1. unyts_header_logo_primary.svg / .png
+   Primary header logo. Designed for dark headers.
+   Treatment: gradient U + white NYT + pink lowercase s.
+
+2. unyts_header_logo_alt_fullgradient.svg / .png
+   Alternate header logo with a full multicolour wordmark.
+
+3. unyts_favicon.svg / .png / favicon.ico
+   Standalone favicon using the U monogram on a dark rounded square.
+
+4. unyts_logo_preview.png
+   Quick preview sheet.
+
+Suggested palette
+-----------------
+Background: #020204
+Primary text: #F4F6FB
+Accent pink: #F34E98
+Gradient stops:
+  0.00 -> #00D2E6
+  0.17 -> #0078FF
+  0.39 -> #B92DFF
+  0.60 -> #FF3E94
+  0.82 -> #FF8A00
+  1.00 -> #F4C500

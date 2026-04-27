@@ -18,10 +18,6 @@ export function SectionAccent({
           variant="halo"
           className="absolute right-[-16%] top-[-8%] hidden h-[38rem] w-[38rem] opacity-60 lg:block"
         />
-        <BrandMotif
-          variant="outline"
-          className="absolute left-[-6rem] top-24 h-48 w-48 opacity-[0.14] sm:h-64 sm:w-64"
-        />
       </div>
     );
   }
@@ -78,4 +74,3 @@ export function SectionAccent({
     </div>
   );
 }
-

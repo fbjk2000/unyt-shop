@@ -7,25 +7,31 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "i18n:check": "node scripts/i18n/check-messages.mjs",
+    "i18n:report-inline-text": "node scripts/i18n/report-inline-text.mjs",
+    "i18n:report-untranslated": "node scripts/i18n/report-untranslated.mjs"
   },
   "dependencies": {
+    "@netlify/blobs": "^10.7.4",
     "clsx": "^2.1.1",
+    "ethers": "^6.16.0",
     "framer-motion": "^12.6.3",
     "next": "^15.2.4",
+    "next-intl": "^4.8.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.9",
+    "@tailwindcss/postcss": "^4.0.17",
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "@tailwindcss/postcss": "^4.0.17",
     "eslint": "^9.22.0",
     "eslint-config-next": "^15.2.4",
     "tailwindcss": "^4.0.17",
     "typescript": "^5.8.2"
   }
 }
-
