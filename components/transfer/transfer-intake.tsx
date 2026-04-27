@@ -55,9 +55,9 @@ function statusLabel(status: string) {
 
 function ResultCard({ transfer }: { transfer: PublicTransferStatus }) {
   return (
-    <div className="rounded-[24px] border border-emerald-300/22 bg-emerald-400/10 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-100">Transferstatus</p>
-      <p className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white">{transfer.publicReference}</p>
+    <div className="rounded-xl border border-emerald-300/20 bg-emerald-400/8 p-5">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-100">Transferstatus</p>
+      <p className="mt-3 text-xl font-semibold tracking-[-0.025em] text-white">{transfer.publicReference}</p>
       <div className="mt-4 grid gap-3 text-sm text-white/72 sm:grid-cols-2">
         <p>
           <span className="block text-[var(--muted)]">Status</span>
@@ -256,9 +256,9 @@ export function TransferIntake() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-      <div className="rounded-[32px] border border-white/10 bg-white/[0.045] p-5 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Assistierte Zuordnung</p>
-        <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white">
+      <div className="rounded-xl border border-white/10 bg-[#101827] p-5 sm:p-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Assistierte Zuordnung</p>
+        <h3 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-white">
           Wallet-Adresse zur Prüfung einreichen
         </h3>
         <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
@@ -301,7 +301,7 @@ export function TransferIntake() {
               type="button"
               onClick={fillWalletFromMetaMask}
               disabled={walletActionSubmitting}
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/18 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-55"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg border border-white/18 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-55"
             >
               MetaMask-Adresse übernehmen
             </button>
@@ -309,7 +309,7 @@ export function TransferIntake() {
               type="button"
               onClick={verifyWalletSignature}
               disabled={walletActionSubmitting}
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-cyan-200/22 bg-cyan-300/10 px-5 py-3 text-sm font-semibold text-cyan-50 hover:bg-cyan-300/16 disabled:cursor-not-allowed disabled:opacity-55"
+              className="inline-flex min-h-10 items-center justify-center rounded-lg border border-cyan-200/20 bg-cyan-300/8 px-4 py-2.5 text-sm font-semibold text-cyan-50 hover:bg-cyan-300/14 disabled:cursor-not-allowed disabled:opacity-55"
             >
               Adresse per Signatur bestätigen
             </button>
@@ -325,10 +325,10 @@ export function TransferIntake() {
               onChange={(event) => setSupportNotes(event.target.value)}
               rows={4}
               placeholder="Nur organisatorische Hinweise. Keine 12 Wörter, keine privaten Schlüssel, keine Passwörter."
-              className="w-full rounded-[10px] border border-white/12 bg-white/6 px-4 py-3 text-sm text-white outline-none focus:border-white/30"
+              className="w-full rounded-lg border border-white/12 bg-white/6 px-4 py-3 text-sm text-white outline-none focus:border-white/30"
             />
           </label>
-          <label className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm leading-6 text-white/72">
+          <label className="flex gap-3 rounded-lg border border-white/10 bg-white/5 p-4 text-sm leading-6 text-white/72">
             <input
               type="checkbox"
               checked={consent}
@@ -344,7 +344,7 @@ export function TransferIntake() {
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#4a9eff] px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_36px_rgba(74,158,255,0.35)] hover:bg-[#6aafff] disabled:cursor-not-allowed disabled:opacity-55"
+            className="inline-flex min-h-10 w-full items-center justify-center rounded-lg bg-[#4a9eff] px-4 py-2.5 text-sm font-semibold text-white shadow-none hover:bg-[#6aafff] disabled:cursor-not-allowed disabled:opacity-55"
           >
             {submitting ? "Wird gespeichert..." : "Zur Prüfung einreichen"}
           </button>
@@ -353,9 +353,9 @@ export function TransferIntake() {
         {transfer ? <div className="mt-5"><ResultCard transfer={transfer} /></div> : null}
       </div>
 
-      <div className="rounded-[32px] border border-white/10 bg-white/[0.045] p-5 sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">Status abrufen</p>
-        <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white">Transferreferenz prüfen</h3>
+      <div className="rounded-xl border border-white/10 bg-[#101827] p-5 sm:p-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--muted)]">Status abrufen</p>
+        <h3 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-white">Transferreferenz prüfen</h3>
         <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
           Nach dem Einreichen erhalten Sie eine Referenznummer. Damit können Sie hier den aktuellen Bearbeitungsstand
           abrufen.
@@ -384,7 +384,7 @@ export function TransferIntake() {
           <button
             type="submit"
             disabled={lookupSubmitting}
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-white/18 bg-white/5 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-55"
+            className="inline-flex min-h-10 w-full items-center justify-center rounded-lg border border-white/18 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-55"
           >
             {lookupSubmitting ? "Status wird geladen..." : "Status ansehen"}
           </button>

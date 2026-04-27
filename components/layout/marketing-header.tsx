@@ -9,19 +9,17 @@ export async function MarketingHeader() {
   const t = await getTranslations();
 
   return (
-    <header className="sticky top-0 z-40 overflow-hidden border-b border-[rgba(255,255,255,0.08)] bg-[#0b1020]/84 backdrop-blur-[12px]">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(140,215,255,0.75)] to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-20 bg-[radial-gradient(circle_at_top,_rgba(79,124,255,0.14),_rgba(79,124,255,0)_70%)]" />
-      <div className="shell relative flex min-h-18 items-center justify-between gap-6">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0b1020]/94 backdrop-blur-md">
+      <div className="shell relative flex min-h-16 items-center justify-between gap-5">
         <Link href="/" className="flex items-center gap-3">
-          <BrandLogo variant="lockupGradient" className="h-7 w-auto sm:h-8" alt="UNYTs" priority />
+          <BrandLogo variant="lockupGradient" className="h-6 w-auto sm:h-7" alt="UNYTs" priority />
         </Link>
-        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-5 md:flex">
           {navigationItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-normal whitespace-nowrap text-[var(--muted)] hover:text-white"
+              className="whitespace-nowrap text-[13px] font-medium text-white/58 hover:text-white"
             >
               {t(`navigation.${item.labelKey}`)}
             </Link>
@@ -29,19 +27,19 @@ export async function MarketingHeader() {
         </nav>
         <div className="hidden items-center gap-3 md:flex">
           <LocaleSwitcher />
-          <Link href="/app/wallet" className="text-sm text-[var(--muted)] hover:text-white">
+          <Link href="/app/wallet" className="whitespace-nowrap text-[13px] font-medium text-white/58 hover:text-white">
             {t("marketingHeader.signIn")}
           </Link>
-          <Button href="/app/wallet" variant="brand">
+          <Button href="/app/wallet" variant="secondary" className="min-h-10 whitespace-nowrap rounded-lg px-4 py-2 shadow-none">
             {t("marketingHeader.getUnyts")}
           </Button>
         </div>
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex min-w-0 items-center gap-2 md:hidden">
           <LocaleSwitcher />
-          <Link href="/ecosystem" className="text-sm text-[var(--muted)] hover:text-white">
+          <Link href="/ecosystem" className="hidden whitespace-nowrap text-[13px] text-white/58 hover:text-white sm:inline">
             {t("navigation.ecosystem")}
           </Link>
-          <Button href="/app/wallet" variant="secondary">
+          <Button href="/app/wallet" variant="secondary" className="hidden min-h-10 whitespace-nowrap rounded-lg px-4 py-2 sm:inline-flex">
             {t("marketingHeader.openApp")}
           </Button>
         </div>
