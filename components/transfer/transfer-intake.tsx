@@ -71,7 +71,6 @@ function ResultCard({ transfer }: { transfer: PublicTransferStatus }) {
       <p className="mt-4 text-sm leading-6 text-white/72">{transfer.statusNote}</p>
       <p className="mt-3 text-xs leading-5 text-white/55">
         Supporter-Datensatz: {transfer.supporterRecordFound ? "gefunden" : "noch zu klären"}
-        {transfer.matchedSupporterId ? ` · ${transfer.matchedSupporterId}` : ""}
       </p>
       <p className="mt-1 text-xs leading-5 text-white/55">
         Wallet-Signatur: {transfer.walletSignatureVerified ? "bestätigt" : "noch nicht bestätigt"}

@@ -29,9 +29,9 @@ const transferSteps = [
   {
     step: "04",
     title: "Wallet zuordnen lassen",
-    status: "Assistiert",
+    status: "Datenimport bereit",
     tone: "assisted",
-    body: "Die Zuordnung erfolgt aktuell unterstützt. Bitte senden Sie keine Recovery Phrase und keine privaten Schlüssel.",
+    body: "Der Import bestehender Supporter-/Backer-Daten ist vorbereitet. Die Zuordnung wird kontrolliert geprüft. Bitte senden Sie keine Recovery Phrase und keine privaten Schlüssel.",
   },
   {
     step: "05",
@@ -45,7 +45,7 @@ const transferSteps = [
     title: "Bestand und Status einsehen",
     status: "Teilweise live",
     tone: "assisted",
-    body: "Der UNYT.shop Wallet-Bereich zeigt supporterbezogene Kontostände. On-chain Transferstatus wird separat ergänzt.",
+    body: "Ihre Transferreferenz kann auf dieser Seite geprüft werden. On-chain Transaktionsstatus wird erst nach realer Ausführung ergänzt.",
   },
 ] as const;
 
@@ -111,9 +111,9 @@ const nowCards = [
     label: "Kommt als nächstes",
     title: "Transferausführung und Status",
     items: [
-      "Geführtes Verbinden des Wallets",
-      "Bestätigung vor tatsächlicher Übertragung",
-      "Besser sichtbarer Transferstatus direkt im UNYT.shop Umfeld",
+      "Import der realen Supporter- und Backer-Daten",
+      "Admin-Prüfung und Freigabe vor tatsächlicher Übertragung",
+      "Transaktionsbestätigung nach realer Ausführung",
     ],
   },
 ] as const;
@@ -144,7 +144,7 @@ const faqs = [
 export const metadata = buildMetadata({
   title: "UNYT Transfer | Offizielle Supporter-Übertragung",
   description:
-    "Offizielle Transferseite für bestehende UNYT Supporter und Backer mit Vorbereitung, MetaMask-Anleitung, Status und unterstütztem nächsten Schritt.",
+    "Offizielle Transferseite für bestehende UNYT Supporter und Backer mit Vorbereitung, MetaMask-Anleitung, Wallet-Signatur, Status und Support.",
   path: "/transfer",
 });
 
@@ -236,7 +236,7 @@ export default function TransferPage() {
                     ["Information", "Live"],
                     ["Wallet-Vorbereitung", "Live"],
                     ["Wallet-Signatur", "Live"],
-                    ["Zuordnung", "Assistiert"],
+                    ["Zuordnung", "Import bereit"],
                     ["Ausführung", "Noch nicht geöffnet"],
                   ].map(([label, value]) => (
                     <div key={label} className="flex items-center justify-between gap-4 border-b border-white/8 pb-3 last:border-b-0 last:pb-0">
@@ -438,7 +438,7 @@ export default function TransferPage() {
       <TransferSection
         eyebrow="Nächste Updates"
         title="Neue Transferstufen werden hier sichtbar, bevor sie aktiv genutzt werden müssen."
-        body="Wenn Wallet-Verbindung, Zuordnungsprüfung oder Transferbestätigung produktionsbereit sind, wird diese Seite zuerst aktualisiert und in der nächsten Supporter-Kommunikation referenziert."
+        body="Wenn Datenimport, Zuordnungsprüfung oder Transferbestätigung produktionsbereit sind, wird diese Seite zuerst aktualisiert und in der nächsten Supporter-Kommunikation referenziert."
       >
         <div className="rounded-xl border border-white/10 bg-[#101827] p-5 sm:p-6">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
