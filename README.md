@@ -1,22 +1,27 @@
 # UNYT.shop
 
-Premium marketing site and app shell for the UNYT ecosystem, built with Next.js App Router, TypeScript, Tailwind CSS, and Framer Motion.
+UNYT.shop is the marketing site, supporter wallet shell, admin console, and transfer-support frontend for the UNYT ecosystem. It is built with Next.js App Router, TypeScript, Tailwind CSS, `next-intl`, Framer Motion, and Netlify's Next.js runtime.
+
+Production domains:
+
+- `https://unyt.shop` - main public site and app shell.
+- `https://transfer.unyt.shop` - dedicated guided transfer/support subdomain for existing UNYT supporters and backers.
 
 ## Setup
 
-1. Install dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Start the local dev server:
+Start local development:
 
 ```bash
 npm run dev
 ```
 
-3. Validate the project:
+Validate before pushing:
 
 ```bash
 npm run lint
@@ -25,10 +30,29 @@ npm run build
 npm run i18n:check
 ```
 
-## Routes
+## Deployment
 
-Public routes:
+The live site is deployed on Netlify from GitHub:
+
+- Repository: `fbjk2000/unyt-shop`
+- Branch: `main`
+- Netlify site: `unyt-shop-preview-20260318`
+- Build command: `npm run build`
+- Publish directory: `.next`
+- Runtime: `@netlify/plugin-nextjs`
+
+`transfer.unyt.shop` is served by the same Next.js app and must be configured as a Netlify domain alias/custom domain on the same site. Host-aware middleware redirects:
+
+- `transfer.unyt.shop` -> `/de/transfer`
+- `transfer.unyt.shop/de` -> `/de/transfer`
+- `transfer.unyt.shop/en` -> `/en/transfer`
+
+## Main Routes
+
+Public marketing routes:
+
 - `/`
+- `/transfer`
 - `/unytbot`
 - `/unyt-exchange`
 - `/ecosystem`
@@ -37,57 +61,111 @@ Public routes:
 - `/faq`
 
 App routes:
+
 - `/app/wallet`
 - `/app/admin`
 - `/app/swap`
 - `/app/activity`
 - `/app/settings`
 
-## Notes
+Transfer routes and APIs:
 
-- Wallet account state is now served by backend routes under `/api/supporter/*`.
-- Superadmin tools are available under `/app/admin` and `/api/admin/*`.
-- Supporter registration, sign-in, top-up, and redemption actions persist server-side in a JSON store.
-  - Local default: `data/supporter-wallet-db.json`
-  - Production default: `/tmp/unyt-shop-data/supporter-wallet-db.json`
-- Optional storage override: `SUPPORTER_DATA_DIR=/path/to/writable/storage`
-- Follow-up tasks are created automatically on registration, top-up, and redemption, and are stored in the wallet state.
-- Superadmin credentials (required for admin login):
-  - `SUPERADMIN_EMAIL` (optional; defaults to `admin@unyt.shop`)
-  - `SUPERADMIN_PASSWORD` (required)
-- Admin role split (optional):
-  - `SUPERADMIN_EDITOR_EMAILS` (comma-separated)
-  - `SUPERADMIN_VIEWER_EMAILS` (comma-separated)
-- Edit guardrail:
-  - `ADMIN_MAX_BALANCE_DELTA` (default `1000`; max absolute available/pending balance delta per edit)
-- TAKO lead capture hooks (used by `/api/interest/register`) are available via environment variables:
-  - `TAKO_LEADS_ENDPOINT`
-  - `TAKO_API_KEY` (optional when endpoint requires auth)
-  - `TAKO_API_KEY_HEADER` (optional, default `x-api-key`)
-  - `TAKO_SOURCE` (optional, default `unyt-interest`)
-- EarnRM integration hooks are available via environment variables:
-  - `EARNRM_API_BASE_URL`
-  - `EARNRM_API_KEY` (preferred; also accepted as `EARNRM_API_TOKEN`)
-  - `EARNRM_TASKS_ENDPOINT` (optional, defaults to `v1/tasks`)
-  - `EARNRM_REDEMPTION_ENDPOINT` (optional, defaults to `v1/tasks`)
-  - `EARNRM_TASK_ASSIGNEE_ID` (optional)
-  - `EARNRM_TASK_PROJECT_ID` (optional)
+- `/de/transfer` and `/en/transfer` - public guided transfer page.
+- `/api/transfer/intake` - submit public wallet details for assisted review.
+- `/api/transfer/status` - lookup transfer status by email and reference.
+- `/api/transfer/wallet-challenge` - create a MetaMask signature challenge.
+- `/api/transfer/wallet-verify` - verify wallet control with `personal_sign`.
+- `/api/admin/transfers` - admin transfer queue.
+- `/api/admin/transfers/import-supporters` - import real supporter/backer source records.
+- `/api/admin/transfers/[transferId]` - update status and execution metadata.
 
-Interest lead capture routes to TAKO first and falls back to EarnRM task creation if TAKO is unavailable.
-Set `EARNRM_API_BASE_URL` to your EarnRM API base (example: `https://earnrm.com/api`) for fallback continuity.
+## Transfer Subdomain
 
-For durable multi-instance production persistence, connect these APIs to a managed datastore.
-Admin audit logs can be exported as CSV via `/api/admin/audit.csv`.
+`transfer.unyt.shop` is the official guided transfer destination promised to existing supporters/backers. It is intentionally not a fake automated transfer flow.
 
-## Localization Prep
+Current production state:
 
-- The project now uses `next-intl` with locale-aware routing and middleware.
-- Current locale list is defined in `i18n/routing.ts` (`en`, `de`).
+- Live: transfer information, MetaMask preparation guidance, public wallet intake, MetaMask signature verification, and transfer reference status lookup.
+- Ready for operations: admin review queue, supporter/backer source-data import, email-based matching, status notes, and execution metadata fields.
+- Not live: automatic token transfer execution. Admin completion requires a transaction hash, but the app does not submit chain transactions yet.
+
+Operational details are documented in [docs/transfer-operations.md](docs/transfer-operations.md).
+
+Normalize CSV supporter exports before admin import:
+
+```bash
+npm run transfer:normalize-supporters -- ./supporter-export.csv
+```
+
+The default normalized output is:
+
+```text
+data/transfer-supporters.normalized.json
+```
+
+## Persistence
+
+Supporter wallet state, sessions, admin sessions, audit logs, transfer requests, transfer wallet challenges, and imported transfer source records share the supporter database shape in `lib/server/supporter-store.ts`.
+
+Storage defaults:
+
+- Local development: file storage at `data/supporter-wallet-db.json`.
+- Netlify production: Netlify Blobs store `unyt-shop-supporter-db`, key `supporter-wallet-db.json`.
+- File override: set `SUPPORTER_DATA_DIR=/path/to/writable/storage`.
+- Driver override: set `SUPPORTER_STORAGE_DRIVER=file` or `SUPPORTER_STORAGE_DRIVER=blobs`.
+- Blob store override: set `SUPPORTER_BLOB_STORE=<store-name>`.
+
+The Supabase/Postgres migration in `supabase/migrations/20260427000000_transfer_workflow.sql` is available for a later move from Netlify Blobs to relational transfer operations.
+
+## Admin
+
+Superadmin and editor tools are available under `/app/admin` and `/api/admin/*`.
+
+Required production variable:
+
+- `SUPERADMIN_PASSWORD`
+
+Optional admin variables:
+
+- `SUPERADMIN_EMAIL` - defaults to `admin@unyt.shop`.
+- `SUPERADMIN_EDITOR_EMAILS` - comma-separated editor allowlist.
+- `SUPERADMIN_VIEWER_EMAILS` - comma-separated viewer allowlist.
+- `ADMIN_MAX_BALANCE_DELTA` - default `1000`; max absolute available/pending balance delta per edit.
+
+Admin audit logs can be viewed through the admin UI and exported as CSV via `/api/admin/audit.csv`.
+
+## Integrations
+
+Interest lead capture uses TAKO first and falls back to EarnRM task creation if TAKO is unavailable.
+
+TAKO variables used by `/api/interest/register`:
+
+- `TAKO_LEADS_ENDPOINT`
+- `TAKO_API_KEY` - optional when the endpoint requires auth.
+- `TAKO_API_KEY_HEADER` - optional, defaults to `x-api-key`.
+- `TAKO_SOURCE` - optional, defaults to `unyt-interest`.
+
+EarnRM variables:
+
+- `EARNRM_API_BASE_URL`
+- `EARNRM_API_KEY` - preferred; `EARNRM_API_TOKEN` is also accepted.
+- `EARNRM_TASKS_ENDPOINT` - optional, defaults to `v1/tasks`.
+- `EARNRM_REDEMPTION_ENDPOINT` - optional, defaults to `v1/tasks`.
+- `EARNRM_TASK_ASSIGNEE_ID` - optional.
+- `EARNRM_TASK_PROJECT_ID` - optional.
+
+Set `EARNRM_API_BASE_URL` to the EarnRM API base, for example `https://earnrm.com/api`, for fallback continuity.
+
+## Localization
+
+The project uses `next-intl` with locale-aware routing and middleware.
+
+- Locales are defined in `i18n/routing.ts` (`en`, `de`).
 - Messages are stored in `messages/<locale>.json`.
 - Locale route wrappers live under `app/[locale]/...`.
-- Header locale switcher is available on marketing and app surfaces.
+- The header locale switcher is available on marketing and app surfaces.
 
-Validation commands:
+Localization validation:
 
 ```bash
 npm run i18n:check
@@ -95,6 +173,4 @@ npm run i18n:report-inline-text
 npm run i18n:report-untranslated
 ```
 
-- `i18n:check` fails on missing/extra keys, empty values, unresolved TODO markers, and ICU placeholder mismatches.
-- `i18n:report-inline-text` prints likely hardcoded UI text still embedded in TSX files to help eliminate leftover untranslated copy.
-- `i18n:report-untranslated` reports strings in non-base locales that still match the English source exactly, so translation leftovers are measurable before release.
+`i18n:check` fails on missing/extra keys, empty values, unresolved TODO markers, and ICU placeholder mismatches. The report commands help find hardcoded UI text and untranslated strings.
